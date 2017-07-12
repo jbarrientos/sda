@@ -1,0 +1,43 @@
+﻿@model SDA.WebApp.Models.AnioCategoria
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Ciclo - @Model.fecha - @ViewBag.categoria.nombre - @ViewBag.tratado.nombre</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.formula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.formula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.arancel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.arancel)
+        </dd>
+
+        
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.anioCategoriaId }, new { @class = "btn btn-default" }) 
+    @Html.ActionLink("Regresar", "Index", new { categoryId = Model.categoriaId }, new { @class = "btn btn-prinmary" })
+</p>

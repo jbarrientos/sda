@@ -1,0 +1,50 @@
+﻿@model SDA.WebApp.Models.Tratado
+
+@{
+    ViewBag.Title = "Detalles";
+    //var paises = ViewData["paises"] as List<SDA.Model.PaisTratado>;
+
+}
+
+<h2>Detalles</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Tratado Comercial</h4>
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.fechaInicio)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.fechaInicio, "ShortDateTime")
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.numeroAnios)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.numeroAnios)
+            </dd>
+
+        </dl>
+    </div>
+</div>
+    
+<p>
+    @Html.ActionLink("Generar Contingentes", "GenerarContingentes", new { tratadoId = Model.tratadoId }, new { @class = "btn btn-default" })
+    @Html.ActionLink("Categorias", "IndexCategories", new { id = Model.tratadoId }, new { @class = "btn btn-success" })
+    @Html.ActionLink("Editar", "Edit", new { id = Model.tratadoId }, new { @class="btn btn-default" }) 
+    @Html.ActionLink("Regresar", "Index", new { }, new { @class="btn btn-primary" })
+</p>

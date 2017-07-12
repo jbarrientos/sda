@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "ConsultaRequisitos";
+}
+
+<h2>Requisitos para @Model.TipoContingente.nombre</h2>
+<hr/>
+<div class="panel panel-primary">
+    <ul>
+        @foreach (var item in Model.Requisitos)
+        {
+            <li><h3><span class="label label-primary">@item.Nombre</span></h3></li>
+        }
+    </ul>
+
+</div>

@@ -1,0 +1,75 @@
+﻿@model SDA.WebApp.Models.Categoria
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles - @Model.nombre</h2>
+
+<div class="well">
+    <h4>@ViewBag.tratado.nombre</h4>
+    <hr />
+
+    <dl class="dl-horizontal">
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.arancelBase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.arancelBase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aniosDesgravacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aniosDesgravacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codigo)
+        </dd>
+
+    </dl>
+</div>
+<hr />
+<div>
+    @Html.ActionLink("Regresar", "IndexCategories", "Tratado", new { id = Model.tratadoId },
+    new { @class = "btn btn-default" })
+
+   
+
+    @Html.ActionLink("Fracciones", "IndexFracciones", new { id = Model.categoriaId },
+    new { @class = "btn btn-success" })
+    @if(!ViewBag.tieneCiclos)
+    { 
+        @Html.ActionLink("Generar desgravación", "GenerarCortes", new { id = Model.categoriaId },
+        new { @class = "btn btn-success push-right" })
+    }
+
+    
+    @Html.ActionLink("Cortes", "Index", "AnioCategoria", new { categoryId = Model.categoriaId },
+    new { @class = "btn btn-info push-right" })
+</div>

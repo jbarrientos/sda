@@ -1,0 +1,191 @@
+﻿@model IEnumerable<SDA.WebApp.Models.Preregistro>
+
+@{
+    ViewBag.Title = "Preregistros";
+}
+
+<h2>Solicitudes de acceso</h2>
+<hr />
+<table class="table table-bordered table-hover" id="tabla">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaEnvio)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dui)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
+
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+            {
+            <tr data-id="@item.Id">
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.FechaEnvio.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @item.Nombre
+                </td>
+                <td>
+                    @item.Nit
+                </td>
+                <td>
+                    @item.Dui
+                </td>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                    @item.Telefono
+                </td>
+                <td>
+                    @if (item.Status == "E")
+                    {
+
+                        <button id="btnOk" title="Aprobar" data-preregistro-id="@item.Id"
+                                class="btn btn-info btn-sm js-aprobar">
+                            Aprobar
+                        </button>
+                    }
+                    else if (item.Status == "R")
+                    {
+
+                        <button id="btnImportador" title="Crear Importador" data-importador-id="@item.Id"
+                                class="btn btn-success btn-sm js-importador">
+                            Crear Importador
+                        </button>
+                    }
+                    else if (item.Status == "F")
+                    {
+                        <span class="label label-primary">Registrado</span>
+
+                    }
+
+
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('#tabla').DataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+
+            $("#tabla").on("click", ".js-aprobar", function (e) {
+                var button = $(this);
+
+
+                bootbox.confirm("Por favor confirmar la aprobación del preregistro No. " +
+                    button.attr("data-preregistro-id") + "?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/preregistros/" + button.attr("data-preregistro-id"),
+                            method: "PUT",
+                            success: function (data) {
+
+                                var row = table.row('[data-id="' +
+                                    button.attr("data-preregistro-id") + '"]'),
+                                    cols = row.data();
+                                //
+
+                                //cols[1] = 'Registrada';
+                                cols[7] = '';
+
+
+                                row.data(cols);
+
+                                toastr.success("Solicitud de preregistro ha sido aprobada.");
+                            },
+                            fail: function (data) {
+                                Console.log(data);
+                                toastr.error("Ocurrio un error. Preregistro no pudo se aprobado.");
+                            }
+                        });
+                    }
+                    });
+
+            });
+
+            $("#tabla").on("click", ".js-importador", function (e) {
+                var button = $(this);
+
+
+                bootbox.confirm(
+                    "Por favor confirmar la creación del importador a partir del preregistro No. " +
+                    button.attr("data-importador-id") + "?", function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/contribuyentes/" + button.attr("data-importador-id"),
+                                method: "PUT",
+                                success: function (data) {
+
+                                    var row = table.row('[data-id="' +
+                                        button.attr("data-importador-id") + '"]'),
+                                        cols = row.data();
+                                    //
+
+                                    //cols[1] = 'Registrada';
+                                    cols[6] = '';
+
+
+                                    row.data(cols);
+
+                                    toastr.success("Registro de importador realizado exitosamente.");
+                                },
+                                fail: function (data) {
+                                    Console.log(data);
+                                    toastr.error("Ocurrio un error. No se pudo crear importador.");
+                                }
+                            });
+                        }
+                    });
+
+            });
+        });
+    </script>
+}
+

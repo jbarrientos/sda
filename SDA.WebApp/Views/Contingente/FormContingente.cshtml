@@ -1,0 +1,103 @@
+﻿@model SDA.WebApp.ViewModels.ContingenteFormViewModel
+@{
+    ViewBag.Title = "FormContingente";
+}
+
+<h2>Contingente</h2>
+@using (Html.BeginForm("Save","Contingente"))
+{
+    <div class="form-horizontal">
+        <h4>@Model.Tratado.nombre</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contingente.nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Contingente.nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Contingente.nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contingente.tipoContingenteId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Contingente.tipoContingenteId,
+               new SelectList(Model.TiposContingente, "tipoContingenteId", "nombre"),
+               "Seleccione Tipo de Contingente...",
+               new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Contingente.tipoContingenteId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contingente.aniosAnteriores, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Contingente.aniosAnteriores, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Contingente.aniosAnteriores, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contingente.aumentoVolumen, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Contingente.aumentoVolumen, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Contingente.aumentoVolumen, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contingente.categoriaId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Contingente.categoriaId,
+               new SelectList(Model.Categorias, "categoriaId", "nombre"),
+               "Seleccione Categoria...",
+               new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Contingente.categoriaId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contingente.cuotaUnica, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Contingente.cuotaUnica, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Contingente.cuotaUnica, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contingente.porcentajeMinimoImportacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Contingente.porcentajeMinimoImportacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Contingente.porcentajeMinimoImportacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contingente.porcentajeVolumenHistorico, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Contingente.porcentajeVolumenHistorico, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Contingente.porcentajeVolumenHistorico, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contingente.volumen, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Contingente.volumen, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Contingente.volumen, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+
+        @Html.HiddenFor(m => m.Contingente.tratadoId)
+        @Html.HiddenFor(m => m.Contingente.contingenteId)
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Cancelar", "Index", new { tratadoId = Model.Tratado.tratadoId })
+</div>
+
+

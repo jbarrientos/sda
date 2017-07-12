@@ -1,0 +1,71 @@
+﻿@model SDA.WebApp.ViewModels.ImprimirLicenciaViewModel
+@{
+    ViewBag.Title = "Imrprimir Licencia";
+}
+
+<h2>Imprimir Licencia - @Model.Licencia.solicitud.contribuyente.nombre</h2>
+<h3>@Model.TipoContingente.nombre - Solicitud: @Model.Licencia.solicitud.solicitudId</h3>
+<h4>Por favor digite el número de acuerdo</h4>
+@using (Html.BeginForm("PrintLicence", "Licencia"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Licencia.noAcuerdo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Licencia.noAcuerdo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Licencia.noAcuerdo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Licencia.FechaAcuerdo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Licencia.FechaAcuerdo,
+               new { htmlAttributes = new { @class = "form-control date-picker" } })
+                @Html.ValidationMessageFor(model => model.Licencia.FechaAcuerdo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Licencia.observaciones, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Licencia.observaciones,
+               new { @class = "form-control", @rows = 4 })
+                @Html.ValidationMessageFor(model => model.Licencia.observaciones, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(m => m.Licencia.licenciaId)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Imprimir" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script>
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                format: 'dd/mm/yyyy',
+                autoclose: true,
+            });
+        });
+</script>
+}
+
+
+
+

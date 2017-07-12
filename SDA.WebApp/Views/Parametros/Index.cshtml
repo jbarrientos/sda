@@ -1,0 +1,110 @@
+﻿@model IEnumerable<SDA.WebApp.Models.Parametro>
+@{
+    ViewBag.Title = "Parametros";
+}
+
+<h2>Parametros de Sistema</h2>
+
+<p>
+    @Html.ActionLink("Nuevo Parametro", "Create", new { },
+    new { @class = "btn btn-primary" })
+
+</p>
+<table class="table table-bordered table-hover" id="tabla">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Código
+            </th>
+            <th>
+                Valor
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+            {
+            <tr data-id="@item.Id">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.ActionLink(item.Codigo, "Edit", new { id = item.Id })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor)
+                </td>
+                <td>
+
+                    <button class="btn btn-default btn-sm js-delete"
+                            data-parametro-id="@item.Id">
+                        Eliminar
+                    </button>
+
+                </td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('#tabla').DataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+
+            $(tabla).on("click", ".js-delete", function (event) {
+                var button = $(this);
+
+                bootbox.confirm("En realidad desea eliminar el registro seleccionado?",
+                    function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/detalleContingenteVario/" +
+                                    button.attr("data-parametro-id"),
+                                method: "DELETE",
+                                success: function (data) {
+                                    table.row(button.parents("tr")).remove().draw();
+                                    toastr.info("Registro eliminado.");
+
+                                },
+                                fail: function () {
+                                    toastr.error("Ocurrio un error intentando eliminar el registro.");
+                                }
+                            });
+                        }
+                    });
+            });
+
+            
+
+        });
+    </script>
+}
+
+
+
+
+

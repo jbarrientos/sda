@@ -1,0 +1,71 @@
+﻿@model SDA.WebApp.Models.ContingenteVario
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>@Model.TipoContingente.nombre</h2>
+<table class="table table-bordered table-striped" style="width:60%">
+
+    <tr>
+        <td>Año</td><td>@Model.Anio</td>
+    </tr>
+    <tr>
+        <td>Tipo Contingente</td><td>@Model.TipoContingente.nombre</td>
+    </tr>
+    <tr>
+        <td>Fecha Inicio</td><td>@Model.FechaInicio.ToString("dd/MM/yyyy")</td>
+    </tr>
+    <tr>
+        <td>Fecha Final</td><td>@Model.FechaFinal.ToString("dd/MM/yyyy")</td>
+    </tr>
+    <tr>
+        <td>Total Contingente</td><td>@Model.TotalRecepcion.ToString("###,###,##0.00")</td>
+    </tr>
+    <tr>
+        <td>Calcular %</td>@if (Model.CalcularPorcentaje)
+        {
+            <td>SI</td>
+        }
+        else
+        {
+            <td>NO</td>
+        }
+    </tr>
+    <tr>
+        <td>Generar Solicitudes?</td>@if (Model.GenerarLicencias)
+        {
+            <td>SI</td>
+        }
+        else
+        {
+            <td>NO</td>
+        }
+    </tr>
+    @if(Model.PorcentajePrimeraFase > 0)
+    {
+        <tr>
+            <td>% Primera Fase</td><td>@Model.PorcentajePrimeraFase</td>
+        </tr>
+        <tr>
+            <td>Fecha Licencia Segunda Fase</td>
+            <td>@Model.FechaLicenciaSegundaFase</td>
+        </tr>
+    }
+
+    <tfoot>
+        <tr>
+            <td colspan="2">
+                @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Plantilla Licencias", "EditTemplate", new { id = Model.Id },
+               new { @class = "btn btn-info" })
+            @Html.ActionLink("Regresar", "Index", new { }, new { @class = "btn btn-default" })
+        </td>
+
+        </tr>
+    </tfoot>
+    
+
+</table>
+
+

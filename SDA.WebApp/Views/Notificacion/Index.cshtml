@@ -1,0 +1,54 @@
+﻿@model SDA.WebApp.ViewModels.NotificacionIndexViewModel
+@{
+    ViewBag.Title = "Notificaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Notificaciones Solicitud No. @Model.Solicitud.solicitudId</h3>
+<hr />
+<table class="table table-bordered table-hover" id="tabla">
+    <thead>
+        
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Notificaciones)
+        {
+            <tr>
+                <td>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">@item.Fecha.ToString("dd/MM/yyyy hh:mm")</div>
+                        <div class="panel-body">
+                            @item.Nota
+                        </div>
+                    </div>
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+
+        @Html.ActionLink("Regresar", "Dashboard", "Contribuyente", new { }, new { @class = "btn btn-default" } )
+
+    </tfoot>
+</table>
+
+@section scripts
+{
+
+    @Scripts.Render("~/Scripts/Utils.js");
+
+    <script>
+        $(document).ready(function () {
+            removeItem("#tabla", "courses", "data-course-id",
+            "En realidad desea eliminar el registro seleccionado?",
+            "El Registro fué eliminado correctamente",
+            "Ocurrió un error intentando eliminar el registro", configTable()
+            );
+        });
+
+
+    </script>
+
+}
+

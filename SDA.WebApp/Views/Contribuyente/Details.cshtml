@@ -1,0 +1,105 @@
+﻿@model SDA.WebApp.ViewModels.ContribuyenteDetailViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Contribuyente.nombre - @Model.Contribuyente.nit</h2>
+
+<table class="table table-bordered table-hover table-striped">
+    <tr>
+        <td>Nombre</td><td>@Model.Contribuyente.nombre</td>
+    </tr>
+    <tr>
+        <td>NIT</td>
+        <td>@Model.Contribuyente.nit</td>
+    </tr>
+    <tr>
+        <td>DUI</td>
+        <td>@Model.Contribuyente.dui</td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td>@Model.Contribuyente.email</td>
+    </tr>
+    <tr>
+        <td>Email Alterno</td>
+        <td>@Model.Contribuyente.EmailAlternativo</td>
+    </tr>
+    <tr>
+        <td>Dirección</td>
+        <td>@Model.Contribuyente.direccion</td>
+    </tr>
+    <tr>
+        <td>Tel. Fijo</td>
+        <td>@Model.Contribuyente.telefonoFijo</td>
+    </tr>
+    <tr>
+        <td>Celular</td>
+        <td>@Model.Contribuyente.telefonoCelular</td>
+    </tr>
+    
+</table>
+<h2>Participación en Contingentes</h2>
+<table class="table table-bordered" id="tabla">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Contingente</th>
+            <th>Año</th>
+            <th>U. Medida</th>
+            <th>Solicitado</th>
+            <th>Asignado</th>
+            <th>Importado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Solicitudes)
+        {
+            <tr>
+                <td>@item.solicitudId</td>
+                <td>
+                    @Html.ActionLink(item.DetalleContingente.Contingente.TipoContingente.nombre, "DisplayChart",
+                   new { id = item.solicitudId })
+                </td>
+                <td>@item.DetalleContingente.anio</td>
+                <td>@item.unidadMedida.nombre</td>
+                <td style="text-align:right">@item.volumenSolicitado.ToString("##,###,##0.00")</td>
+                <td style="text-align:right">@item.volumenAsignado.ToString("##,###,##0.00")</td>
+                <td style="text-align:right">@item.volumenImportado.ToString()</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+@section scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabla').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'copy',
+                        text: 'Copiar Datos'
+                    }
+                ],
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,65 @@
+﻿@model SDA.WebApp.ViewModels.SolicitudFormViewModel
+
+@{
+    ViewBag.Title = "Solicitud";
+}
+
+<h2>Solicitud - @Model.Solicitud.DetalleContingente.Contingente.TipoContingente.nombre - @Model.Solicitud.DetalleContingente.anio</h2>
+<h3>@Model.Solicitud.DetalleContingente.Contingente.Tratado.nombre</h3>
+
+@using (Html.BeginForm("Save", "Solicitud"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>@Model.Solicitud.contribuyente.nombre : @Model.Solicitud.contribuyente.nit</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Solicitud.fraccionId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Solicitud.fraccionId,
+               new SelectList(Model.Fracciones, "FraccionId", "DisplayName"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Solicitud.fraccionId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Solicitud.volumenSolicitado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Solicitud.volumenSolicitado, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Solicitud.volumenSolicitado, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Solicitud.unidadMedidaId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Solicitud.unidadMedidaId,
+               new SelectList(Model.UnidadesMedida, "UnidadMedidaId", "nombre"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Solicitud.unidadMedidaId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Solicitud.comentarios, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Solicitud.comentarios,
+               new { @class = "form-control", @rows = 4 })
+                @Html.ValidationMessageFor(model => model.Solicitud.comentarios, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @Html.HiddenFor(m => m.Solicitud.solicitudId)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar Solicitud" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Regresar", "Dashboard", "Contribuyente", new { }, new { @class = "btn btn-default" })
+</div>

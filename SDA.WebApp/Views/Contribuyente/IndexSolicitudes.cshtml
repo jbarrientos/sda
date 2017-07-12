@@ -1,0 +1,63 @@
+﻿@model IEnumerable<SDA.WebApp.ViewModels.IndexSolicitudes>
+
+@{
+    ViewBag.Title = "IndexSolicitudes";
+}
+
+<h2>IndexSolicitudes</h2>
+
+<p>
+    @Html.ActionLink("Nueva Solicitud", "Create", new { detalleContingenteId = ViewBag.detalleContingenteId, contribuyenteId = ViewBag.contribuyente.contribuyenteId })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaRegistro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VolumenSolicitado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VolumenAsignado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VolumenImportado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VolumenARedistribuir)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Historico)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaRegistro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VolumenSolicitado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VolumenAsignado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VolumenImportado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VolumenARedistribuir)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Historico)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

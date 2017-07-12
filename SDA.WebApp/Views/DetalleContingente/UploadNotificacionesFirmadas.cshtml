@@ -1,0 +1,51 @@
+﻿@model SDA.WebApp.ViewModels.UploadNotificacionesFirmadas
+@{
+    ViewBag.Title = "Notificaciones";
+}
+<h3>Subir Notificaciones Firmadas - @Model.DetalleContingente.Contingente.TipoContingente.nombre</h3>
+<hr />
+@using (Html.BeginForm("UploadNotificaciones", "DetalleContingente",
+                            FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    <div class="form-horizontal">
+        <h4>Por favor llenar los siguientes campos</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label for="uploadedFile">Seleccione archivo</label>
+            <input name="uploadedFile" type="file" class="form-control btn btn-info" required />
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(m => m.NombreArchivo)
+            @Html.TextAreaFor(m => m.NombreArchivo,
+               new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.NombreArchivo, "",
+               new { @class = "text-danger" })
+        </div>*@
+
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.DetalleContingente.detalleContingenteId)
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Subir Notificaciones Firmadas" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+
+
+
+}
+
+<div>
+    @Html.ActionLink("Cancelar", "Index", new { }, new { @class = "btn btn-default" })
+</div>
+
+
+
+

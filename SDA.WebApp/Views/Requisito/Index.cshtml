@@ -1,0 +1,122 @@
+﻿@model SDA.WebApp.ViewModels.RequisitoIndexViewModel
+
+@{
+    ViewBag.Title = "Requisitos";
+}
+
+<h2>Requisitos para @Model.TipoContingente.nombre</h2>
+<hr />
+@Html.ActionLink("Nuevo Requisito", "New", 
+    new { id = Model.TipoContingente.tipoContingenteId },
+    new { @class = "btn btn-primary" })
+<table class="table table-bordered table-hover" id="tabla">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+
+            <th>
+                Requisito
+            </th>
+            <th>
+                Indispensable?
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.Requisitos)
+            {
+            <tr data-id="@item.Id">
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.Nombre
+                </td>
+                <td>
+                    @if (item.Indispensable)
+                    {
+                        <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+                    }
+                    else
+                    {
+                        <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
+                    }
+                </td>
+                <td>
+
+                    <button id="btnOk" title="Eliminar" data-requisito-id="@item.Id"
+                            class="btn btn-info btn-sm js-eliminar">
+                        Eliminar
+                    </button>
+
+                </td>
+
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('#tabla').DataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+
+            $("#tabla").on("click", ".js-eliminar", function (e) {
+                var button = $(this);
+
+
+                bootbox.confirm("Por favor confirmar la eliminación del registro No. " +
+                    button.attr("data-requisito-id") + "?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/requisitos/" + button.attr("data-requisito-id"),
+                            method: "DELETE",
+                            success: function (data) {
+
+                                var row = table.row('[data-id="' +
+                                    button.attr("data-requisito-id") + '"]'),
+                                    cols = row.data();
+                                //
+
+                                table.row(button.parents("tr")).remove().draw();
+
+                                toastr.success("Requisito ha sido eliminado de Tipo de Contingente.");
+                            },
+                            fail: function (data) {
+                                Console.log(data);
+                                toastr.error("Ocurrio un error. No se pudo eliminar el requisito.");
+                            }
+                        });
+                    }
+                    });
+
+            });
+
+            
+        });
+    </script>
+}
+

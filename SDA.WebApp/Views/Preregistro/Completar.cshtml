@@ -1,0 +1,156 @@
+﻿@model SDA.WebApp.ViewModels.CompletarPreregistroFormViewModel
+
+@{
+    ViewBag.Title = "Solicitud de Acceso";
+}
+
+<h3>Completar Registro</h3>
+<h4>@Model.Preregistro.Nombre - @Model.Preregistro.Nit</h4>
+
+@using (Html.BeginForm("Completar", "Preregistro"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Por favor llenar los siguientes campos (los campos con * son requeridos)</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Preregistro.RegistroIVA,
+           htmlAttributes: new { @class = "control-label col-md-2 requerido iva" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Preregistro.RegistroIVA,
+               new { htmlAttributes = new { @class = "form-control iva", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Preregistro.RegistroIVA, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @if (Model.Preregistro.TipoPersona == "N")
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Preregistro.Dui,
+               htmlAttributes: new { @class = "control-label col-md-2 requerido" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Preregistro.Dui,
+                   new { htmlAttributes = new { @class = "form-control dui", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Preregistro.Dui, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Preregistro.RepresentanteLegal,
+               htmlAttributes: new { @class = "control-label col-md-2 requerido" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Preregistro.RepresentanteLegal,
+                   new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Preregistro.RepresentanteLegal, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Preregistro.NitRepresentanteLegal,
+               htmlAttributes: new { @class = "control-label col-md-2 requerido" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Preregistro.NitRepresentanteLegal,
+                   new { htmlAttributes = new { @class = "form-control nit", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Preregistro.NitRepresentanteLegal, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Preregistro.DUIRepresentanteLegal,
+               htmlAttributes: new { @class = "control-label col-md-2 requerido" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Preregistro.DUIRepresentanteLegal,
+                   new { htmlAttributes = new { @class = "form-control dui", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Preregistro.DUIRepresentanteLegal, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Preregistro.CargoRepresentanteLegal,
+               htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Preregistro.CargoRepresentanteLegal, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Preregistro.CargoRepresentanteLegal, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Preregistro.EmailAlterno, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Preregistro.EmailAlterno, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Preregistro.EmailAlterno, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Preregistro.Contacto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Preregistro.Contacto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Preregistro.Contacto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Preregistro.ActividadEconomicaId,
+           htmlAttributes: new { @class = "control-label col-md-2 requerido" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.Preregistro.ActividadEconomicaId,
+               new SelectList(Model.ActividadesEconomicas, "Id", "Nombre"), "Seleccione Actividad Económica...",
+               new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(m => m.Preregistro.ActividadEconomicaId, "",
+               new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Preregistro.Direccion,
+           htmlAttributes: new { @class = "control-label col-md-2 requerido" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Preregistro.Direccion,
+               new { @class = "form-control", rows = 4, required = "required" })
+                @Html.ValidationMessageFor(model => model.Preregistro.Direccion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        @Html.HiddenFor(model => model.Preregistro.Id)
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+        $('.dui').focusin(function () {
+            $('.dui').mask("99999999-9");
+        });
+
+        $('.nit').focusin(function () {
+            $('.nit').mask("9999-999999-999-9");
+        });
+
+        $('.iva').focusin(function () {
+            $('.iva').mask("999999-9");
+        });
+
+
+
+
+    </script>
+}
+
+
+
+
+

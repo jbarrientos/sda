@@ -1,0 +1,80 @@
+﻿@model IEnumerable<SDA.WebApp.ViewModels.IndexFraccionModel>
+
+@{
+    ViewBag.Title = "Fracciones asociados a categoria";
+}
+
+<h2>Fracciones - @ViewBag.categoria.nombre - @ViewBag.tratado.nombre</h2>
+<p>
+    @Html.ActionLink("Regresar a categoría", "Details", "Categoria", new { id = ViewBag.categoria.categoriaId },
+               new { @class = "btn btn-default" })
+    @Html.ActionLink("Regresar a tratado", "Details", "Tratado", new { id = ViewBag.tratado.tratadoId },
+               new { @class = "btn btn-info" })
+</p>
+<table class="table table-bordered table-hover" id="tabla">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CodigoSAC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fraccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.arancel)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="width:15%">
+                    @Html.DisplayFor(modelItem => item.CodigoSAC)
+                </td>
+                <td style="width: 60%">
+                    @Html.DisplayFor(modelItem => item.Fraccion.nombre)
+                </td>                
+                <td style="width:10%; text-align:right;">
+                    @String.Format("{0:n1}", item.arancel)
+                    @*@Html.DisplayFor(modelItem => item.arancel)*@
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", "FraccionTratado",new { id = item.Id }, new { @class = "btn btn-primary"  }) 
+                    @Html.ActionLink("Detalles", "Details", "FraccionTratado", new { id = item.Id }, new { @class="btn btn-info" }) 
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabla').dataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+
+
+

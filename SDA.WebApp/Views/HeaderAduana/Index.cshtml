@@ -1,0 +1,86 @@
+﻿@model SDA.WebApp.ViewModels.HeaderAduanaIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Registro de Importaciones DGA</h2>
+
+<p>
+    @Html.ActionLink("Subir nuevo archivo", "Create", new { },
+    new { @class = "btn btn-primary" })
+</p>
+<table class="table table-bordered table-hover" id="tabla">
+    <thead>
+        <tr>
+
+            
+            
+            <th>
+                Fecha Carga
+            </th>
+            <th>
+                Nombre de Archivo
+            </th>
+            <th>Status</th>
+            <th>No. Lineas</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.Headers)
+        {
+            <tr>
+
+                
+                <td>
+                    @item.FechaCarga
+                </td>
+                <td>
+                    @item.NombreArchivo
+                </td>
+                <td>
+    @if (item.Status == "Procesado")
+    {
+        <span class="label label-primary">Procesado</span>
+    }
+    else
+    {
+        <span class="label label-danger">Pendiente de Aplicar</span>
+    }</td>
+                <td style="text-align:right">@item.NumLineas</td>
+                <td>
+                    @Html.ActionLink("Lineas", "Index", "DetalleAduana",
+                   new { headerAduanaId = item.Id }, new { @class = "btn btn-info btn-sm" })
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabla').dataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+}

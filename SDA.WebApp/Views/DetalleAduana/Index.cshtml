@@ -1,0 +1,120 @@
+﻿@model IEnumerable<SDA.WebApp.Models.DetalleAduana>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>
+    Lineas @ViewBag.header.NombreArchivo (@Model.Count() Lineas)
+    @if (!ViewBag.header.Aplicado)
+    {
+        <button class="btn btn-primary" id="btnProcesar" data-item="@ViewBag.header.headerAduanaId">Procesar Registros de Aduana</button>
+    }
+    
+</h2>
+@Html.ActionLink("Regresar", "Index", "HeaderAduana", new { detalleContingenteId = ViewBag.header.detalleContingenteId }, new { @class = "btn btn-default" })
+
+<table class="table table-bordered table-hover" id="tabla">
+    <thead>
+        <tr>
+            <th>Fecha de liquidación</th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.empresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombreEmpresa)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.cuota)
+            </th>
+            <th>Subpartida</th>
+            <th>
+                @Html.DisplayNameFor(model => model.pesoNeto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cifPartida)
+            </th>
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@item.fechaLiquidacion.ToString("dd/MM/yyyy")</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.empresa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombreEmpresa)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.cuota)
+                </td>
+                <td>@item.subpartida</td>
+                <td style="text-align:right">
+                    @item.pesoNeto.ToString("###,##0.00")
+                </td>
+                <td style="text-align:right">
+                    @item.cifPartida.ToString("###,##0.00")
+                </td>
+
+
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabla').dataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+
+            $("#btnProcesar").click(function () {
+                var button = $(this);
+
+                bootbox.confirm("En realidad desea aplicar los movimientos de importación reportados por el Departamento de Aduana?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/headerAduana/" + button.attr("data-item"),
+                            method: "POST",
+                            success: function (data) {
+                                button.hide();
+                                toastr.info("Proceso de Aplicación Realizado Exitosamente.");
+
+                            },
+                            fail: function () {
+                                toastr.error("Ocurrió un error. No se aplicaron los movimientos.");
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}

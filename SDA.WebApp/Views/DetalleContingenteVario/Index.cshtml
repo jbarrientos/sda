@@ -1,0 +1,201 @@
+﻿@model SDA.WebApp.ViewModels.DetalleContingenteVarioIndexViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@Model.Contingente.TipoContingente.nombre - @Model.Contingente.Anio</h2>
+<h3>
+    <span class="label label-info">@Model.Contingente.TotalRecepcion.ToString("###,###,##0.00") - @Model.TotalAsignado.ToString("###,###,##0.00") (@Model.PorcentajeAsignado.ToString("##0.00")%) = @Model.Saldo.ToString("###,###,##0.00")</span>
+    @if (!Model.Contingente.SolicitudesGeneradas && Model.Contingente.GenerarLicencias)
+    {
+        <button id="btnGenerar" name="btnGenerar"
+                class="btn btn-success"
+                data-item="@Model.Contingente.Id">
+            Generar Solicitudes
+        </button>
+    }
+</h3>
+<p>
+    @if (!Model.Contingente.SolicitudesGeneradas)
+    {
+        @Html.ActionLink("Agregar empresa", "Add", "DetalleContingenteVario",
+    new { id = Model.Contingente.Id }, new { @class = "btn btn-primary" })
+    }
+    
+
+    @Html.ActionLink("Regresar", "Index", "ContingenteVario",
+    new { }, new { @class = "btn btn-default" })
+
+    @Html.ActionLink("Documentos", "Index", "DocumentoContingente",
+    new { id = Model.Contingente.Id }, new { @class = "btn btn-info" })
+
+</p>
+<table class="table table-bordered table-hover" id="tabla">
+    <thead>
+        <tr>
+            <th>
+                Empresa
+            </th>
+            <th>
+                NIT
+            </th>
+            @if (Model.Contingente.PorcentajePrimeraFase > 0.00)
+            {
+                <th>% 1a Fase</th>
+                <th>% 2da Fase</th>
+            }
+            @if (!Model.Contingente.TipoContingente.mecanismoSubasta)
+            {
+
+                if (Model.Contingente.CalcularPorcentaje)
+                {
+                    <th>%</th>
+                }
+                <th>Volumen</th>
+
+
+            }
+
+            <th></th>
+        </tr>
+
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.Detalles)
+            {
+            <tr data-id="@item.Id">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contribuyente.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contribuyente.nit)
+                </td>
+                @if (Model.Contingente.PorcentajePrimeraFase > 0.00)
+                {
+                    <td style="text-align:right">@item.VolumenPrimeraFase.ToString("###,##0.00")</td>
+                    <td style="text-align:right">@item.VolumenSegundaFase.ToString("###,##0.00")</td>
+                }
+
+                @if (!Model.Contingente.TipoContingente.mecanismoSubasta)
+                {
+
+                    if (Model.Contingente.CalcularPorcentaje)
+                    {
+                        <td style="text-align:right">
+                            @item.PorcentajeRecepcion.ToString("##0.00")
+                        </td>
+                    }
+                    <td style="text-align:right">
+                        @item.Recepcion.ToString("###,##0.00")
+                    </td>
+
+
+
+                }
+                
+                
+                <td>
+
+                    @if (!Model.Contingente.SolicitudesGeneradas)
+                    {
+                        <button class="btn btn-default btn-sm js-delete"
+                                data-granza-id="@item.Id">
+                            Eliminar
+                        </button>
+                    }
+                    @if (Model.Contingente.TipoContingente.mecanismoSubasta)
+                    {
+                        @Html.ActionLink("Certificados", "IndexCertificados", "Solicitud",
+                       new { id = item.Id }, new { @class = "btn btn-warning btn-sm" } )
+                    }
+
+
+
+
+                </td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('#tabla').DataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+
+            $(tabla).on("click", ".js-delete", function (event) {
+                var button = $(this);
+
+                bootbox.confirm("En realidad desea eliminar el registro seleccionado?",
+                    function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/detalleContingenteVario/" + button.attr("data-granza-id"),
+                                method: "DELETE",
+                                success: function (data) {
+                                    table.row(button.parents("tr")).remove().draw();
+                                    toastr.info("Registro eliminado.");
+
+                                },
+                                fail: function () {
+                                    toastr.error("Ocurrio un error intentando eliminar el registro.");
+                                }
+                            });
+                        }
+                    });
+            });
+
+            $("#btnGenerar").click(function () {
+                var button = $(this);
+
+                bootbox.confirm("En realidad desea realizar el proceso de generación de solicitudes para el contingente @Model.Contingente.TipoContingente.nombre?",
+                    function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/contingenteVario/" + button.attr("data-item"),
+                                method: "POST",
+                                success: function (data) {
+                                    button.hide();
+                                    toastr.info("Proceso de Generación de Solicitudes realizado exitosamente.");
+
+                                },
+                                fail: function () {
+                                    toastr.error("Ocurrió un error. No se generaron las solicitudes.");
+                                }
+                            });
+                        }
+                    });
+            });
+
+
+
+
+
+
+        });
+    </script>
+}
+
+
+
+
+

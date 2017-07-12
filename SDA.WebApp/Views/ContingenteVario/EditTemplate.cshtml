@@ -1,0 +1,42 @@
+﻿@model SDA.WebApp.Models.ContingenteVario
+    @{
+        ViewBag.Title = "Editar Plantilla Licencias";
+    }
+
+    <h2>@Model.TipoContingente.nombre</h2>
+    <h4>Plantilla para emisión de Licencias de importación</h4>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.TextAreaFor(model => model.TemplateLicencia,
+               new { @id = "plantilla" })
+                    @Html.ValidationMessageFor(model => model.TemplateLicencia, "",
+               new { @class = "text-danger" })
+                </div>
+            </div>
+            @Html.HiddenFor(m => m.Id)
+
+            <div class="form-group">
+                <div class="col-md-12">
+
+                    @Html.ActionLink("Cancelar", "Details", new { Id = Model.Id },
+               new { @class = "btn btn-default" })
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Replace the <textarea id="editor1"> with a CKEditor
+            // instance, using default configuration.
+            CKEDITOR.replace('plantilla');
+        </script>
+    }
+

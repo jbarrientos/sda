@@ -1,0 +1,79 @@
+﻿@model SDA.WebApp.ViewModels.DetalleSolicitudIndexViewModel
+@{
+    ViewBag.Title = "Consulta Por Fraccion";
+}
+
+<h3>Asignación Por Fracción Arancelaria</h3>
+<h4>@Model.Contingente.Contingente.TipoContingente.nombre - @Model.Contingente.anio</h4>
+<table class="table table-bordered table-striped table-hover" id="tabla">
+    <thead>
+        <tr>
+            <th>Importador</th>
+            
+            @foreach (var fraccion in Model.Fracciones)
+            {
+                <th>@fraccion.Fraccion.codigo</th>
+            }
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Detalles)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                
+                @foreach (var fraccion in item.Asignados)
+                {
+                    <td>@fraccion.ToString("###,##0.00")</td>
+                }
+                
+
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('#tabla').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'copy',
+                        text: 'Copiar Datos'
+                    }
+                ],
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+
+            //$("#btnAsignacion").on('click', function (event) {
+
+            //    bootbox.confirm("En realidad desea ejecutar el proceso de Asignación de Contingente?",
+            //        function (result) {
+            //            if (!result)
+            //                event.preventDefault();
+            //        });
+
+            //});
+
+
+
+
+        });
+    </script>
+}
+

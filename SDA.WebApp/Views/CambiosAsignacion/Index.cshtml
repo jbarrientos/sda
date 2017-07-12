@@ -1,0 +1,122 @@
+﻿@model SDA.WebApp.ViewModels.CambiosAsignacionIndexViewModel
+
+@{
+    ViewBag.Title = "Cambios Asignación";
+}
+<h2>Solicitud ID: @Model.DetalleAsignacion.Solicitud.solicitudId - @Model.DetalleAsignacion.Solicitud.contribuyente.nombre - @Model.DetalleAsignacion.Solicitud.contribuyente.nit</h2>
+<h3>Detalle Asignación @Model.DetalleAsignacion.Asignacion.DetalleContingente.anio @Model.DetalleAsignacion.Asignacion.DetalleContingente.Contingente.TipoContingente.nombre</h3>
+
+<p>
+    @Html.ActionLink("Nuevo Cambio", "Create", "CambiosAsignacion",
+    new { id = Model.DetalleAsignacion.Id }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Regresar", "Index", "DetalleAsignaciones",
+    new { id = Model.DetalleAsignacion.AsignacionId },
+    new { @class = "btn btn-default" })
+
+</p>
+<table class="table table-bordered table-hover" id="tabla">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Fecha
+            </th>
+            <th>
+                Usuario
+            </th>
+            <th>
+                Valor Anterior
+            </th>
+
+            <th>
+                Valor Actualizado
+            </th>
+            <th>
+                Comentarios
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.CambiosAsignacion)
+            {
+            <tr data-id="@item.Id">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaCambio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+                </td>
+                <td style="text-align:right">
+                    @Html.DisplayFor(modelItem => item.ValorOriginal)
+                </td>
+
+                <td style="text-align:right">
+                    @Html.DisplayFor(modelItem => item.ValorActualizado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comentarios)
+                </td>
+                <td>
+                    
+
+
+                </td>
+
+
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('#tabla').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'copy',
+                        text: 'Copiar Datos'
+                    }
+                ],
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+
+            //$("#btnAsignacion").on('click', function (event) {
+
+            //    bootbox.confirm("En realidad desea ejecutar el proceso de Asignación de Contingente?",
+            //        function (result) {
+            //            if (!result)
+            //                event.preventDefault();
+            //        });
+
+            //});
+
+
+
+
+        });
+    </script>
+}
+

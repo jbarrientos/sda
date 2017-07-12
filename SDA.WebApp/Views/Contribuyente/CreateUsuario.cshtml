@@ -1,0 +1,44 @@
+﻿@model SDA.WebApp.ViewModels.LoginContribuyenteViewModel
+@{
+    ViewBag.Title = "CreateUsuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Creación de usuario</h2>
+<h3>@Model.nombre - @Model.nit</h3>
+@using (Html.BeginForm("CreateUsuario", "Contribuyente",
+                FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    <div class="well">
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+           <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+        </div>
+        @Html.HiddenFor(c => c.nit)
+        @Html.HiddenFor(c => c.nombre)
+        @Html.HiddenFor(c => c.email)
+        @Html.HiddenFor(c => c.contribuyenteId)
+        
+        <hr />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-primary" value="Crear usuario" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

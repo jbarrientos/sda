@@ -1,0 +1,263 @@
+﻿@model SDA.WebApp.ViewModels.DashboardImportadorViewModel
+@using Microsoft.AspNet.Identity.EntityFramework;
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<h3>@Model.Importador.nombre (@Model.Importador.nit)</h3>
+@*@foreach (var rol in ViewBag.roles)
+    {
+        @Html.Display(((IdentityRole)rol).Name)
+    }*@
+<hr />
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3>Gestión de los contingentes arancelarios solicitados</h3>
+    </div>
+    <div class="panel-body">
+
+        <table class="table table-bordered table-hover tabla">
+            <thead>
+                <tr>
+                    <th>Número de solicitud</th>
+                    <th>Fecha de solicitud</th>
+                    <th>
+                        Estado de la solicitud
+                    </th>
+                    <th>
+                        Contingente
+                    </th>
+                    <th>
+                        Monto anual solicitado
+                    </th>
+
+                    <th>Cuota anual asignada</th>
+                    <th>Monto otorgado en licencia</th>
+
+                    <th>Volumen importado</th>
+                    <th>Unidad de medida</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model.Solicitudes)
+                {
+                    <tr>
+                        <td>
+                            @item.Id
+                        </td>
+
+                        <td>
+
+                            @Html.DisplayFor(modelItem => item.FechaRegistro)
+                            @if (item.NumNotificaciones > 0)
+                            {
+                                @Html.ActionLink(item.NumNotificaciones.ToString(),
+                               "Index", "Notificacion", new { id = item.Id },
+                               new { @class = "badge" })
+                                @*<a href="#"><span class="badge">@item.NumNotificaciones</span></a>*@
+                            }
+
+                        </td>
+
+
+                        
+                        <td style="text-align:center">
+                            @if (item.Estado != "Autorizada")
+                            {
+                                @item.Estado
+                                <span class="glyphicon glyphicon-list"
+                                      data-toggle="tooltip" data-placement="top"
+                                      title="Pendiente de Aprobar. Recuerde subir toda la documentación requerida para la aprobación de la solicitud."></span>
+                            }
+                            else
+                            {
+                                @item.Estado
+                                <span class="glyphicon glyphicon-ok"
+                                      data-toggle="tooltip" data-placement="top"
+                                      title="Su solicitud ha sido aprobada. Una vez notificada la asignación correspondiente, podra registrar la solicitud de licencias de importación"></span>
+                            }
+                            @*@Html.DisplayFor(modelItem => item.Estado)*@
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TipoContingente.nombre)
+                        </td>
+                        <td style="text-align:right">
+                            @Html.DisplayFor(modelItem => item.VolumenSolicitado)
+                        </td>
+                        <td style="text-align:right">
+                            @Html.DisplayFor(modelItem => item.VolumenAsignado)
+                        </td>
+                        <td style="text-align:right">
+                            @Html.DisplayFor(modelItem => item.SumaOtorgadoLicencias)
+                        </td>
+                        <td style="text-align:right">
+                            @Html.DisplayFor(modelItem => item.VolumenImportado)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UnidadMedida.nombre)
+                        </td>
+                        <td>
+                            @if (item.Estado == "Pendiente")
+                            {
+                                @Html.ActionLink("Requisitos", "Index", "RequisitoSolicitud",
+                           new { id = item.Id }, new { @class = "btn btn-warning btn-sm" })
+                            }
+                            else if (item.DetalleContigente != null && item.DetalleContigente.NotificacionesEnviadas)
+                            {
+                                @Html.ActionLink("Notificación", "DownloadNotificacion", "Solicitud",
+                                new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
+                            }
+                        </td>
+                        <td>
+                            @if (item.Estado == "Pendiente")
+                            {
+                                @Html.ActionLink("Editar", "Update", "Solicitud",
+                           new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
+                            }
+                            else if (item.Periodo == DateTime.Now.Year)
+                            {
+                                @Html.ActionLink("Licencias", "IndexImportador", "Licencia",
+                           new { solicitudId = item.Id }, new { @class = "btn btn-primary btn-sm" })
+                            }
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3>Recepción de solicitudes para contingentes</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered table-hover tabla">
+            <thead>
+                <tr>
+
+                    <th>
+                        Tratado
+                    </th>
+                    <th>Tipo Contingente</th>
+                    <th>
+                        Periodo
+                    </th>
+                    <th>
+                        Inicio Solic.
+                    </th>
+
+                    <th>Fin Solic.</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model.Contingentes)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tratado.nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TipoContingente.nombre)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Periodo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaInicio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaFinal)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Información", "ConsultaRequisitos", "Requisito",
+                           new { id = item.Contingente.tipoContingenteId }, new { @class = "btn btn-default btn-sm" })
+                        </td>
+                        <td>
+                            @if (!item.YaSolicito)
+                            {
+                                @Html.ActionLink("Ingresar solicitud", "Create", "Solicitud",
+                           new { detalleContingenteId = item.Id }, new { @class = "btn btn-primary btn-sm" })
+                            }
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+
+      var data = google.visualization.arrayToDataTable([
+        ['Fracción', 'Volumen', { role: 'style' }],
+        ['Solicitado', 5845.30726383685, '#b87333', ],
+        ['Asignado', 2399.97823661221, 'silver']
+      ]);
+
+      var options = {
+        title: "Demo",
+        bar: {groupWidth: '95%'},
+        legend: 'none',
+      };
+
+      var chart_div = document.getElementById('chart_div');
+      var chart = new google.visualization.ColumnChart(chart_div);
+
+      // Wait for the chart to finish drawing before calling the getImageURI() method.
+      google.visualization.events.addListener(chart, 'ready', function () {
+        chart_div.innerHTML = '<img src="' + chart.getImageURI() + '">';
+        console.log(chart_div.innerHTML);
+      });
+
+      chart.draw(data, options);
+
+  }
+</script>
+
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            $('.tabla').dataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+
+
+

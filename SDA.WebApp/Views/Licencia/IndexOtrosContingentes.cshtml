@@ -1,0 +1,127 @@
+﻿@model SDA.WebApp.ViewModels.LicenciaIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Licencias : @Model.Solicitud.contribuyente.nombre</h2>
+<h3>@Model.Solicitud.ContingenteVario.TipoContingente.nombre - No. de solicitud: @Model.Solicitud.solicitudId</h3>
+
+<p>
+    @Html.ActionLink("Regresar", "IndexVarios", "Solicitud",
+       new { id = Model.Solicitud.ContingenteVarioId }, new { @class = "btn btn-default" })
+    @if (Model.Solicitud.ContingenteVario.TipoContingente.mecanismoSubasta)
+    {
+        @Html.ActionLink("Emitir Licencia", "CreateVarios", "Licencia",
+       new { id = Model.Solicitud.solicitudId }, new { @class = "btn btn-primary" })
+    }
+</p>
+<table class="table table-bordered table-hover" id="tabla">
+    <thead>
+        <tr>
+            <th>
+                Código
+            </th>
+            <th>
+                Acuerdo
+            </th>
+            <th>
+                Fecha
+            </th>
+            <th>
+                Fecha de Vencimiento
+            </th>
+            <th>
+                Volumen
+            </th>
+            <th>
+                Unidad de Medida
+            </th>
+            <th>
+                Impresa?
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Licencias)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.noAcuerdo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha)
+                </td>
+                <td>
+                    @item.fechaVencimiento.ToString()
+                </td>
+                <td style="text-align:right">
+                    @item.volumen.ToString("###,##0.00")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.unidadMedida.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Impresa)
+                </td>
+                <td>
+                    @if (item.fecha.Date.CompareTo(DateTime.Today.Date) <= 0 && !item.Impresa
+                && item.codigo == "")
+                    {
+                        @Html.ActionLink("Complementar", "ImrprimirLicencia",
+                       new { id = item.licenciaId },
+                            new { @class = "btn btn-warning btn-sm" });
+                    }
+                    else if (!item.Impresa && item.noAcuerdo != "" && item.codigo != "")
+                    {
+                        @Html.ActionLink("Imprimir", "Print",
+                       new { licenciaId = item.licenciaId },
+                            new { @class = "btn btn-info btn-sm" });
+                    }
+                    else if (!item.SignedLicenseUploaded)
+                    {
+                        @Html.ActionLink("Subir", "UploadSigned",
+                       new { id = item.licenciaId },
+                            new { @class = "btn btn-success btn-sm" });
+                    }
+
+
+                </td>
+
+
+
+
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabla').dataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+}

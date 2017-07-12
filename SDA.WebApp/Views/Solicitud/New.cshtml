@@ -1,0 +1,137 @@
+﻿@model SDA.WebApp.ViewModels.SolicitudNewViewModel
+
+@{
+    ViewBag.Title = "Nueva Solicitud";
+    var idx = 0;
+}
+
+<div class="page-header">
+    <h1>
+        Nueva Solicitud @Model.DetalleContingente.Contingente.TipoContingente.nombre - @Model.DetalleContingente.anio
+        <br/><small>@Model.Importador.nombre : @Model.Importador.nit</small>
+    </h1>
+</div>
+
+    @using (Html.BeginForm("New", "Solicitud",
+                                    FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            
+            <div class="page-header"><h3><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Requisitos (Debe subir todos los requisitos para poder remitir la solicitud)</h3></div>
+            @foreach (var req in Model.Requisitos)
+            {
+
+                <div class="page-header"><h3>@req.Nombre</h3></div>
+                <div class="form-group">
+                    @*@Html.Label(req.Nombre)*@
+                    <input name="files[@idx]" type="file" class="form-control btn btn-success" required />
+                    @Html.ValidationMessageFor(model => model.Requisitos, "",
+                        new { @class = "text-danger" })
+                </div>
+                    idx++;
+
+
+            }
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.Solicitud.unidadMedidaId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Solicitud.unidadMedidaId,
+                       new SelectList(Model.UnidadesMedida, "UnidadMedidaId", "nombre"), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Solicitud.unidadMedidaId, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            @if (Model.DetalleContingente.Contingente.TipoContingente.EspecificarFraccion)
+            {
+                <div class="page-header">
+                    <h3>
+                        Por favor ingrese el valor solicitado en cada una de las fracciones que importara <br /><small>
+                            Expresado en @Model.DetalleContingente.Contingente.TipoContingente.UnidadMedida.nombre
+                        </small>
+                    </h3>
+                </div>
+                <div class="form-group">
+
+                    <div class="col-md-8">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Fracción</th>
+                                    <th>Solicitado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var fraccion in Model.Fracciones)
+                                {
+
+                                    <tr>
+                                        <td>@fraccion.codigo : @fraccion.nombre</td>
+                                        <td>
+                                            <input type="text"
+                                                   id="fraccion_@fraccion.fraccionId"
+                                                   name="fraccion_@fraccion.fraccionId"
+                                                   class="form-control" />
+                                        </td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+
+                </div>
+            }
+            else
+            {
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Solicitud.fraccionId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+
+                        @Html.DropDownListFor(model => model.Solicitud.fraccionId,
+               new SelectList(Model.Fracciones, "FraccionId", "DisplayName"), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Solicitud.fraccionId, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Solicitud.volumenSolicitado, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Solicitud.volumenSolicitado, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Solicitud.volumenSolicitado, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            }
+
+
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.comentarios, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.comentarios,
+                       new { @class = "form-control", @rows = 4 })
+                        @Html.ValidationMessageFor(model => model.comentarios, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+            @Html.HiddenFor(m => m.Solicitud.contribuyenteId)
+            @Html.HiddenFor(m => m.DetalleContingente.detalleContingenteId)
+
+            <div class="form-group">
+                <div class="col-md-10 pull-right">
+                    <input type="submit" value="Enviar Solicitud" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Regresar", "Dashboard", "Contribuyente", new { }, new { @class = "btn btn-default" })
+    </div>

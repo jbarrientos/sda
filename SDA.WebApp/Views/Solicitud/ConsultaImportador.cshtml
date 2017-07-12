@@ -1,0 +1,201 @@
+﻿@model SDA.WebApp.ViewModels.SolicitudConsultaViewModel
+@using Microsoft.AspNet.Identity.EntityFramework;
+@{
+    ViewBag.Title = "Solicitud";
+}
+
+<div class="page-header">
+    <h1>@Model.Solicitud.contribuyente.nombre (@Model.Solicitud.contribuyente.nit) <br /><small>Solicitud No. <strong>@Model.Solicitud.solicitudId</strong> - @Model.TipoContingente.nombre (valores expresados en @Model.TipoContingente.UnidadMedida.nombre)</small></h1>
+</div>
+
+<table class="table table-bordered" style="width:50%">
+    <tr>
+        <td>Solicitado</td><td style="text-align:right">@Model.Solicitud.volumenSolicitado.ToString("###,###,##0.00")</td>
+    </tr>
+    <tr>
+        <td>Asignado</td><td style="text-align:right">@Model.Solicitud.volumenAsignado.ToString("###,###,##0.00")</tdstyle="text-align:right">
+    </tr>
+    <tr>
+        <td>Importado</td><td style="text-align:right">@Model.Solicitud.volumenImportado</td>
+    </tr>
+</table>
+
+
+
+
+@if (Model.DetallesFraccion.Count > 0)
+{
+
+    <div class="page-header">
+        <h3><span class="glyphicon glyphicon-book"></span> Detalle de solicitud por Fracción<small></small></h3>
+    </div>
+    
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th>% Asignación</th>
+                <th>Solicitado</th>
+                <th>Asignado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var det in Model.DetallesFraccion)
+            {
+                <tr>
+                    <td>@det.Fraccion.codigo</td>
+                    <td>@det.Fraccion.nombre</td>
+                    <td style="text-align: right">@det.PorcentajeAplicado.ToString("###,##0.00")</td>
+                    <td style="text-align: right">@det.Solicitado.ToString("###,##0.00")</td>
+                    <td style="text-align: right">@det.Asignado.ToString("###,##0.00")</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Total @Model.Solicitud.volumenSolicitado.ToString("###,##0.00") @Model.Solicitud.unidadMedida.nombre</td>
+            </tr>
+        </tfoot>
+    </table>
+}
+<h3><span class="glyphicon glyphicon-road"></span> Licencias</h3>
+<hr />
+<table class="table table-bordered table-hover" id="tabla">
+    <thead>
+        <tr>
+            <th>
+                Código)
+            </th>
+            <th>
+                No. Acuerdo
+            </th>
+            <th>
+                Fecha
+            </th>
+            <th>
+                Fecha Vencimiento
+            </th>
+            <th>
+                Volumen
+            </th>
+            
+            <th>
+                Estado
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Licencias)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.noAcuerdo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechaVencimiento)
+                </td>
+                <td style="text-align:right">
+                    @item.volumen.ToString("###,##0.00")
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+    <h3><span class="glyphicon glyphicon-th-list"></span> Detalle Documentos</h3>
+    <hr />
+<table class="table table-bordered table-hover tabla" id="tabla">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Requisito</th>
+            <th>Indispensable?</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.Requisitos)
+        {
+            <tr>
+
+                <td>
+
+                    @item.Fecha.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @item.Requisito.Nombre
+                </td>
+                <td>
+                    @if (item.Requisito.Indispensable)
+                    {
+                        <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+                    }
+                    else
+                    {
+                        <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
+                    }
+                </td>
+                <td>
+
+                    @Html.ActionLink("Descargar Documento", "GetRequisito", "Solicitud",
+                    new { id = item.Id },
+                    new { @class = "btn btn-primary" })
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('.tabla').DataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+
+
+        });
+
+
+
+    </script>
+}
+
+
+
+

@@ -1,0 +1,52 @@
+﻿@model SDA.WebApp.Models.Contingente
+@{
+    ViewBag.Title = "EditTemplate";
+}
+
+<h2>@Model.TipoContingente.nombre</h2>
+@*<h4>Plantilla para emisión de Licencias y notificaciones de importación</h4>*@
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        
+        <hr />
+        <h3>Plantilla Licencias</h3>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.TextAreaFor(model => model.TemplateLicencia, new { @class = "form-control", rows = 10})
+                @Html.ValidationMessageFor(model => model.TemplateLicencia, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+        <h3>Plantilla Notificaciones</h3>
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.TextAreaFor(model => model.TemplateNotificacion, new { @class = "form-control", rows = 10 })
+                @Html.ValidationMessageFor(model => model.TemplateNotificacion, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+        @Html.HiddenFor(m => m.contingenteId)
+
+        <div class="form-group">
+            <div class="col-md-12">
+                
+                @Html.ActionLink("Cancelar", "Index", new { tratadoId = Model.tratadoId }, new { @class = "btn btn-default" })
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+
+    <script>
+            // Replace the <textarea id="editor1"> with a CKEditor
+            // instance, using default configuration.
+        //CKEDITOR.replace('plantilla');
+        //CKEDITOR.replace('plantillaNotificacion');
+    </script>
+}
+
+
+

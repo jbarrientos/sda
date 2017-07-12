@@ -1,0 +1,144 @@
+﻿@model SDA.WebApp.ViewModels.RequisitoSolicitudIndexViewModel
+@using Microsoft.AspNet.Identity.EntityFramework;
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<h3>@Model.Solicitud.contribuyente.nombre (@Model.Solicitud.contribuyente.nit)</h3>
+@if(Model.Pendientes.Count > 0)
+{
+    
+    @Html.ActionLink("Subir requisito", "Upload", new { id = Model.Solicitud.solicitudId }, 
+    new { @class = "btn btn-primary" })
+    <h4>Requisitos Pendientes</h4>
+    <hr />
+    <ul class="list-group">
+        @foreach (var pendiente in Model.Pendientes)
+        {
+
+            <li class="list-group-item">
+                @pendiente.Nombre
+                <a href="@Url.Action("Upload",
+                    new { id = Model.Solicitud.solicitudId, tipoId = pendiente.Id })" class="btn btn-success btn-sm">
+                    <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+                </a>
+
+            </li>
+
+        }
+    </ul>
+}
+else if (Model.Solicitud.estado == "S")
+{
+    @Html.ActionLink("Enviar solicitud", "Remitir", "Solicitud", 
+    new { id = Model.Solicitud.solicitudId },
+    new { @class = "btn btn-primary", id = "btnRemitir", name = "btnRemitir" })
+}
+
+<hr />
+        <table class="table table-bordered table-hover tabla" id="tabla">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Requisito</th>
+                    <th>Indispensable?</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model.Requisitos)
+                {
+                    <tr>
+
+                        <td>
+
+                            @item.Fecha.ToString("dd/MM/yyyy")
+                        </td>
+                        <td>
+                            @item.Requisito.Nombre
+                        </td>
+                        <td>
+                            @if (item.Requisito.Indispensable)
+                            {
+                                <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+                            }
+                            else
+                            {
+                                <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
+                            }
+                        </td>
+                        <td>
+                            <button id="btnImportador" title="Eliminar" 
+                                    data-requisito-id="@item.Id"
+                                    class="btn btn-warning btn-sm js-delete">
+                                Eliminar
+                            </button>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+
+
+
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('.tabla').DataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+
+            $("#tabla").on("click", ".js-delete", function (e) {
+                var button = $(this);
+
+
+                bootbox.confirm("Por favor confirmar la eliminación del documento seleccionado?", function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/requisitossolicitud/" + button.attr("data-requisito-id"),
+                                method: "DELETE",
+                                success: function (data) {
+
+                                    table.row(button.parents("tr")).remove().draw();
+                                    $("#btnRemitir").hide();
+
+                                    toastr.success("Documento fue eliminado exitosamente.");
+                                },
+                                fail: function (data) {
+                                    Console.log(data);
+                                    toastr.error("Ocurrio un error. Requisito no pudo ser eliminado.");
+                                }
+                            });
+                        }
+                    });
+
+            });
+        });
+
+
+
+    </script>
+}
+
+
+
+

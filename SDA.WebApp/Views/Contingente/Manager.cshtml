@@ -1,0 +1,90 @@
+﻿@model IEnumerable<SDA.WebApp.ViewModels.IndexManagerContingenteModel>
+
+@{
+    ViewBag.Title = "Manager";
+}
+
+<h2>Administrador de Contingentes @ViewBag.year</h2>
+
+    <table class="table table-bordered table-hover" id="tabla">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tratado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TipoContingente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Monto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MontoNuevos)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaInicioSolicitudes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaFinalSolicitudes)
+                </th>
+                
+                <th></th>
+            </tr>
+            </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tratado.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoContingente.nombre)
+                    </td>
+                    <td style="text-align:right">
+                        @Html.DisplayFor(modelItem => item.Monto)
+                    </td>
+                    <td style="text-align:right">
+                        @Html.DisplayFor(modelItem => item.MontoNuevos)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaInicioSolicitudes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaFinalSolicitudes)
+                    </td>
+                    
+                    <td>
+                        @Html.ActionLink("Solicitudes", "Index", "Solicitud", new { detalleContingenteId = item.Id }, new { @class="btn btn-info"}) 
+                        
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabla').dataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+

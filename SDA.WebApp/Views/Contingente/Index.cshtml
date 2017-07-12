@@ -1,0 +1,104 @@
+﻿@model IEnumerable<SDA.WebApp.ViewModels.IndexContingenteModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Contingentes - @ViewBag.tratado.nombre</h2>
+<p>
+    @Html.ActionLink("Nuevo Contingente", "Create", new { tratadoId = ViewBag.tratado.tratadoId },
+    new { @class = "btn btn-primary" })
+
+</p>
+
+<table class="table table-bordered table-hover" id="tabla">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoContingente)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.TipoNomenclatura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnidadMedida)
+            </th>
+            
+            
+
+            @*<th>
+                @Html.DisplayNameFor(model => model.VolumenHistoricosPercent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VolumenNuevosPercent)
+            </th>*@
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoContingente.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoNomenclatura.codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnidadMedida.nombre)
+                </td>
+               
+                @*<td style="text-align:right">
+                    @Html.DisplayFor(modelItem => item.VolumenHistoricosPercent)
+                </td>
+                <td style="text-align:right">
+                    @Html.DisplayFor(modelItem => item.VolumenNuevosPercent)
+                </td>*@
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
+                    @Html.ActionLink("Detalles", "Details", new { contingenteId = item.Id }, new { @class = "btn btn-info btn-sm" })
+                    @Html.ActionLink("Periodos", "Index", "DetalleContingente", new { contingenteId = item.Id }, new { @class = "btn btn-warning btn-sm" })
+                    @Html.ActionLink("Plantilla", "EditTemplate", new { id = item.Id },
+                   new { @class = "btn btn-success btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<p>
+    @Html.ActionLink("Regresar a Tratados", "Index", "Tratado", new { },
+               new { @class = "btn btn-default" })
+    
+</p>
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabla').dataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+
+
+

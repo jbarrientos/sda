@@ -1,0 +1,76 @@
+﻿@model SDA.WebApp.ViewModels.RenovarLicenciaViewModel
+
+@{
+    ViewBag.Title = "Renovar licencia";
+}
+
+<h2>Renovación de Licencia @Model.Licencia.LicenciaRenovadaId</h2>
+<h3>@Model.Importador.nombre</h3>
+
+@using (Html.BeginForm("Renovar", "Licencia"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Licencia</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Licencia.noAcuerdo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Licencia.noAcuerdo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Licencia.noAcuerdo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Licencia.FechaAcuerdo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Licencia.FechaAcuerdo,
+               new { htmlAttributes = new { @class = "form-control date-picker" } })
+                @Html.ValidationMessageFor(model => model.Licencia.FechaAcuerdo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Licencia.volumen, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Licencia.volumen, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Licencia.volumen, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        
+        
+
+        @Html.HiddenFor(m => m.Licencia.LicenciaRenovadaId)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Renovar licencia" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @*<script>
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                format: 'dd/mm/yyyy',
+                autoclose: true,
+            });
+        });
+    </script>*@
+}
+
+
+
+
+
+

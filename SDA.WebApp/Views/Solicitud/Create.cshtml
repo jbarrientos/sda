@@ -1,0 +1,107 @@
+﻿@model SDA.WebApp.Models.Solicitud
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Nueva Solicitud @ViewBag.tipo.nombre - @ViewBag.detalle.anio</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>@ViewBag.contribuyente.nombre : @ViewBag.contribuyente.nit</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.unidadMedidaId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.unidadMedidaId,
+               new SelectList(ViewBag.unidades, "UnidadMedidaId", "nombre"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.unidadMedidaId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @if (ViewBag.tipo.EspecificarFraccion)
+        {
+            <h4>Por favor ingrese el valor solicitado en cada una de las fracciones que importara</h4>
+            <div class="form-group">
+
+                <div class="col-md-8">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Fracción</th>
+                                <th>Solicitado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var fraccion in ViewBag.fracciones)
+                            {
+
+                                <tr>
+                                    <td>@fraccion.codigo : @fraccion.nombre</td>
+                                    <td>
+                                        <input type="text" 
+                                               id="fraccion_@fraccion.fraccionId"
+                                               name="fraccion_@fraccion.fraccionId"
+                                               class="form-control" />
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                    
+                </div>
+
+
+
+            </div>
+        }
+        else
+        {
+            
+            <div class="form-group">
+                @Html.LabelFor(model => model.fraccionId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    @Html.DropDownListFor(model => model.fraccionId,
+               new SelectList(ViewBag.fracciones, "FraccionId", "DisplayName"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.fraccionId, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.volumenSolicitado, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.volumenSolicitado, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.volumenSolicitado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        }
+
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.comentarios, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.comentarios,
+               new { @class = "form-control", @rows = 4 })
+                @Html.ValidationMessageFor(model => model.comentarios, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+        @Html.HiddenFor(m => m.contribuyenteId)
+
+        <div class="form-group">
+            <div class="col-md-10 pull-right">
+                <input type="submit" value="Enviar Solicitud" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Regresar", "Dashboard", "Contribuyente", new { }, new { @class = "btn btn-default" })
+</div>

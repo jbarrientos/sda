@@ -1,0 +1,84 @@
+﻿@model IEnumerable<SDA.WebApp.ViewModels.IndexTipoContingenteModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tipos de contingente</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo tipo de contingente", "Create", new { }, new { @class = "btn btn-primary" })
+</p>
+<table class="table table-bordered table-hover" id="tabla">
+    <thead>
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnidadMedida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoNomenclatura)
+            </th>
+            <th style="width:25%"></th>
+        </tr>
+        </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnidadMedida.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoNomenclatura.codigo)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id },
+                   new { @class = "btn btn-default btn-sm" })
+                    @Html.ActionLink("Requisitos", "Index", "Requisito",
+                   new { id = item.Id }, new { @class = "btn btn-info btn-sm" })
+                    @Html.ActionLink("Fracciones", "Index", "FraccionTipoContingente",
+                   new { tipoContingenteId = item.Id }, new { @class = "btn btn-warning btn-sm" })
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabla').dataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+
+
+
+
+

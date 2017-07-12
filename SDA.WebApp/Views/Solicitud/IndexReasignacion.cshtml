@@ -1,0 +1,93 @@
+﻿@model IEnumerable<SDA.WebApp.ViewModels.IndexSolicitudes>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Solicitudes Reasignación - @ViewBag.detalle.anio</h2>
+<h3>@ViewBag.tipoContingente.nombre</h3>
+
+<p>
+    @Html.ActionLink("Regresar", "SummaryContingentes", "Contingente", new {  }, new { @class = "btn btn-default" })
+</p>
+<table class="table table-bordered table-hover" id="tabla">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Contribuyente)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.VolumenSolicitado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VolumenAsignado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VolumenImportado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnidadMedida)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td style="width:20%">
+                    @Html.DisplayFor(modelItem => item.Contribuyente.nombre)
+                </td>
+
+
+
+                <td style="text-align:right">
+                    @Html.DisplayFor(modelItem => item.VolumenSolicitado)
+                </td>
+                <td style="text-align:right">
+                    @Html.DisplayFor(modelItem => item.VolumenAsignado)
+                </td>
+                <td style="text-align:right">
+                    @Html.DisplayFor(modelItem => item.VolumenImportado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnidadMedida.nombre)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Licencias", "Index", "Licencia", new { solicitudId = item.Id }, new { @class = "btn btn-success" })
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabla').dataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+}
+

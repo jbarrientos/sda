@@ -1,0 +1,89 @@
+﻿@model IEnumerable<SDA.WebApp.ViewModels.IndexDetalleContingenteModel>
+
+@{
+    ViewBag.Title = "Desktop";
+}
+
+<h2>@ViewBag.contribuyente.nombre - @ViewBag.contribuyente.nit</h2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Contingentes</div>
+        <div class="panel-body">
+
+
+            <table class="table table-bordered table-hover" id="tabla">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Periodo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TipoContingente)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaInicio)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaFinal)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Estado)
+                        </th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Periodo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TipoContingente.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaInicio)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaFinal)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Estado)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Solicitudes", "IndexSolicitudes", new { detalleContingenteId = item.Id, id = ViewBag.contribuyente.contribuyenteId })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabla').dataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+

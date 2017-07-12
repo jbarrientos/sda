@@ -1,0 +1,72 @@
+﻿@using SDA.WebApp.Models
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Sistema DATCO", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+
+
+        <div class="navbar-collapse collapse">
+            @if (User.IsInRole(RoleName.ADMINISTRADOR)) /*&& User.IsInRole(RoleNames.CanManageTreaty))*/
+                        {
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Preregistros", "Index", "Preregistro", new { }, new { })</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle"
+                           data-toggle="dropdown"
+                           role="button" aria-haspopup="true" aria-expanded="false">Acuerdos Comerciales<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Administración de Acuerdos Comerciales", "Index", "Tratado")</li>
+                            <li>@Html.ActionLink("Importadores/Exportadores", "Index", "Contribuyente")</li>
+                            <li>@Html.ActionLink("Fracciones", "Index", "Fraccion")</li>
+                            <li>@Html.ActionLink("Registros de Aduana", "Index", "HeaderAduana")</li>
+                            <li>@Html.ActionLink("Contingentes", "SummaryContingentes", "Contingente", new { year = 0 }, new { })</li>
+                            <li>@Html.ActionLink("Otros Contingentes", "Index", "ContingenteVario")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle"
+                           data-toggle="dropdown"
+                           role="button" aria-haspopup="true" aria-expanded="false">Parametros<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Unidades de Medida", "Index", "UnidadMedida")</li>
+                            <li>@Html.ActionLink("Nomenclaturas para contingentes", "Index", "TipoNomenclatura")</li>
+                            <li>@Html.ActionLink("Productos", "Index", "Producto")</li>
+                            <li>@Html.ActionLink("Tipos de contingentes", "Index", "TipoContingente")</li>
+                            <li>@Html.ActionLink("Notificaciones de Sistema", "Index", "NotificacionInterna")</li>
+                            <li>@Html.ActionLink("Parametros de Sistema", "Index", "Parametros")</li>
+                        </ul>
+                    </li>
+                    
+                    @*@foreach(string rol in Roles.GetAllRoles())
+                        {
+                            @Html.Display("Rol: " + rol)
+                        }*@
+                    @if (User.IsInRole("CanManageTreaty"))
+                {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle"
+                               data-toggle="dropdown"
+                               role="button" aria-haspopup="true"
+                               aria-expanded="false">Seguridad<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Roles", "Index", "RolesAdmin")</li>
+                                <li>@Html.ActionLink("Usuarios", "Index", "UsersAdmin")</li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            }
+            @Html.Partial("_LoginPartial")
+        </div>
+
+    </div>
+
+</div>

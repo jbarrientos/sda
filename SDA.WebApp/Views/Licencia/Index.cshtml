@@ -1,0 +1,151 @@
+﻿@model IEnumerable<SDA.WebApp.ViewModels.IndexLicenciasViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Licencias: @ViewBag.solicitud.Contribuyente.nombre</h2>
+<h3>No. Solicitud: @ViewBag.solicitud.Id - @ViewBag.solicitud.TipoContingente.nombre - @ViewBag.solicitud.Periodo</h3>
+
+@*<p>
+    @Html.ActionLink("Solicitudes", "Index", "Solicitud", new { detalleContingenteId = ViewBag.solicitud.Id },
+    new { @class = "btn btn-primary" })
+</p>*@
+<table class="table table-bordered table-hover" id="tabla">
+    <thead>
+        <tr>
+            <th>No. Licencia</th>
+            <th>
+                @Html.DisplayNameFor(model => model.codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.acuerdo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaVencimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Volumen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnidadMedida)
+            </th>
+            
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.licenciaId)</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.acuerdo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaAcuerdo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaVencimiento)
+                </td>
+                <td style="text-align:right">
+                    @Html.DisplayFor(modelItem => item.Volumen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnidadMedida.nombre)
+                </td>
+                
+                <td>
+    @if (item.Fecha.Date.CompareTo(DateTime.Today.Date) <= 0 && !item.Impresa
+                && item.codigo == "")
+    {
+        @Html.ActionLink("Complementar", "ImrprimirLicencia",
+                       new { id = item.licenciaId },
+                            new { @class = "btn btn-warning btn-sm" });
+    }
+    else if (!item.Impresa && item.acuerdo != "" && item.codigo != "")
+    {
+        @Html.ActionLink("Imprimir", "Print",
+                       new { licenciaId = item.licenciaId },
+                            new { @class = "btn btn-info btn-sm" });
+    }
+    else if (!item.UploadedLicense)
+    {
+        @Html.ActionLink("Subir", "UploadSigned",
+                       new { id = item.licenciaId },
+                            new { @class = "btn btn-success btn-sm" });
+    }
+    else
+    {
+        @Html.ActionLink("Recepción", "PrintReceipt",
+                       new { id = item.licenciaId },
+                            new { @class = "btn btn-warning btn-sm" });
+    <td>
+        @if (item.UploadedLicense)
+                    {
+            @Html.ActionLink("Descargar", "DownloadSigned",
+                       new { id = item.Id },
+                            new { @class = "btn btn-success btn-sm" });
+                    }
+    </td>
+    }
+                    @*@if (item.Estado == "S")
+             {
+                 @Html.ActionLink("Liberar", "Completar", new { id = item.Id },
+            new { @class = "btn btn-primary btn-sm" })
+             }
+             else
+             {
+                 @Html.ActionLink("Imprimir", "Print", new { licenciaId = item.Id },
+            new { @class = "btn btn-warning btn-sm" })
+             }*@
+
+                </td>
+                <td>
+                    @if (item.FechaVencimiento < DateTime.Today && item.Volumen - item.VolumenImportado > 0.00 &&
+                    item.Estado != "E")
+                    {
+                        @Html.ActionLink("Renovar", "Renovar",
+                       new { id = item.licenciaId },
+                            new { @class = "btn btn-success btn-sm" });
+                    }
+                </td>
+
+
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabla').dataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+}

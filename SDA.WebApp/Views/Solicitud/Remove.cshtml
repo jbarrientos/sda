@@ -1,0 +1,55 @@
+﻿@model SDA.WebApp.ViewModels.RemoveSolicitudViewModel
+@{
+    ViewBag.Title = "Remove";
+}
+
+<h2>Confirmar retiro de solicitud No. @Model.Solicitud.solicitudId</h2>
+<h3>Importador @Model.Solicitud.contribuyente.nombre</h3>
+<hr />
+@using (Html.BeginForm("Remove", "Solicitud"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Por favor brindar detalles del retiro del importador</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Solicitud.ObservacionesRetiro,
+           htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Solicitud.ObservacionesRetiro,
+               new { @class = "form-control", rows = 4 })
+                @Html.ValidationMessageFor(model => model.Solicitud.ObservacionesRetiro, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        @Html.HiddenFor(model => model.Solicitud.solicitudId)
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Retirar solicitud" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+@Html.ActionLink("Cancelar", "Index", "Solicitud", new { detalleContingenteId = Model.Solicitud.detalleContingenteId }, new { @class = "btn btn-default btn-sm"})
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+}
+
+
+
+
+
+
+
+
+

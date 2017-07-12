@@ -1,0 +1,48 @@
+﻿@model SDA.WebApp.ViewModels.RequisitoFormViewModel
+
+@{
+    ViewBag.Title = "Requisito";
+}
+
+<h2>Requisito para @Model.TipoContingente.nombre</h2>
+
+@using (Html.BeginForm("Save", "Requisito"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <!--<h4>TipoContingente</h4>-->
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Indispensable, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Indispensable)
+                    @Html.ValidationMessageFor(model => model.Indispensable, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        @Html.HiddenFor(m => m.TipoContingente.tipoContingenteId)
+        @Html.HiddenFor(m => m.TipoContingente.nombre)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Cancelar", "Index", new { id = Model.TipoContingente.tipoContingenteId } )
+</div>

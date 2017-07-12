@@ -1,0 +1,101 @@
+﻿@model SDA.WebApp.ViewModels.ContribuyenteDisplayChartViewModel
+
+@{
+    
+    var solicitudes = Model.Resumen;
+    string strContingentes = "";
+    string strAsignado = "";
+
+    foreach (var cont in solicitudes)
+    {
+        if (strContingentes == "")
+        {
+            strContingentes = cont.DetalleContingente.anio.ToString();
+            strAsignado = cont.volumenImportado.ToString();
+        }else{
+            strContingentes = strContingentes + "," + cont.DetalleContingente.anio.ToString();
+            strAsignado = strAsignado + "," + cont.volumenImportado.ToString();
+        }
+    }
+}
+
+
+<h2>@Model.Contribuyente.nombre</h2>
+<canvas id="myChart" width="600" height="300"></canvas>
+
+<script charset="utf-8">
+
+    var context = $("#myChart").get(0).getContext("2d");
+
+    var jsContingentes = "@strContingentes";
+    var asignado = "@strAsignado";
+    var arrAsignado = asignado.split(',');
+
+    var data = {
+        labels: jsContingentes.split(","), // ["January", "February", "March", "April", "May", "June", "July"],
+
+        datasets: [{
+            label: "Historia de Importación",
+            data: arrAsignado,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.4)',
+                'rgba(54, 162, 235, 0.4)',
+                'rgba(255, 206, 86, 0.4)',
+                'rgba(75, 192, 192, 0.4)',
+                'rgba(153, 102, 255, 0.4)',
+                'rgba(255, 159, 64, 0.4)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    var options = {
+        ///Boolean - Whether grid lines are shown across the chart
+        scaleShowGridLines: true,
+        //String - Colour of the grid lines
+        scaleGridLineColor: "rgba(0,0,0,.05)",
+        //Number - Width of the grid lines
+        scaleGridLineWidth: 1,
+        //Boolean - Whether the line is curved between points
+        bezierCurve: true,
+        //Number - Tension of the bezier curve between points
+        bezierCurveTension: 0.4,
+        //Boolean - Whether to show a dot for each point
+        pointDot: true,
+        //Number - Radius of each point dot in pixels
+        pointDotRadius: 4,
+        //Number - Pixel width of point dot stroke
+        pointDotStrokeWidth: 1,
+        //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+        pointHitDetectionRadius: 20,
+        //Boolean - Whether to show a stroke for datasets
+        datasetStroke: true,
+        //Number - Pixel width of dataset stroke
+        datasetStrokeWidth: 2,
+        //Boolean - Whether to fill the dataset with a colour
+        datasetFill: true,
+        title: {
+            display: false
+        }
+
+
+    };
+
+    var myLineChart = new Chart(context, {
+        type: "line",
+        data: data,
+        options:options
+    });
+
+    // var myLineChart = new Chart(context).Line(data, options);
+</script>
+
+

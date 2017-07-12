@@ -1,0 +1,124 @@
+﻿@model IEnumerable<SDA.WebApp.Models.NotificacionInterna>
+
+@{
+    ViewBag.Title = "Requisitos";
+}
+
+<h2>Correos para notificaciones</h2>
+<hr />
+@Html.ActionLink("Nuevo Requisito", "New", new { }, new { @class = "btn btn-primary" })
+<table class="table table-bordered table-hover" id="tabla">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+
+            <th>
+                Nombre
+            </th>
+            <th>
+                Email
+            </th>
+            <th>Contingentes</th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+            {
+            <tr data-id="@item.Id">
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.Nombre
+                </td>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                    @if (item.Tipo == "C")
+                    {
+                        <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+                    }
+                    else
+                    {
+                        <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
+                    }
+                </td>
+                <td>
+
+                    <button id="btnOk" title="Eliminar" data-notificacion-id="@item.Id"
+                            class="btn btn-info btn-sm js-eliminar">
+                        Eliminar
+                    </button>
+
+                </td>
+
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('#tabla').DataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+
+            $("#tabla").on("click", ".js-eliminar", function (e) {
+                var button = $(this);
+
+
+                bootbox.confirm("Por favor confirmar la eliminación del registro No. " +
+                    button.attr("data-notificacion-id") + "?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/notificacionesInternas/" + button.attr("data-notificacion-id"),
+                            method: "DELETE",
+                            success: function (data) {
+
+                                var row = table.row('[data-id="' +
+                                    button.attr("data-notificacion-id") + '"]'),
+                                    cols = row.data();
+                                //
+
+                                table.row(button.parents("tr")).remove().draw();
+
+                                toastr.success("Registro de Notificacion ha sido eliminado.");
+                            },
+                            fail: function (data) {
+                                Console.log(data);
+                                toastr.error("Ocurrio un error. No se pudo eliminar registro.");
+                            }
+                        });
+                    }
+                    });
+
+            });
+
+
+        });
+    </script>
+}
+

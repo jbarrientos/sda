@@ -1,0 +1,69 @@
+﻿@model SDA.WebApp.Models.Solicitud
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>@ViewBag.importador.nombre @ViewBag.importador.nit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>@ViewBag.detalle.anio - @ViewBag.tipo.nombre</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.solicitudId)
+        @Html.HiddenFor(model => model.contribuyenteId)
+        @Html.HiddenFor(model => model.detalleContingenteId)
+        @Html.HiddenFor(model => model.unidadMedidaId)
+        @Html.HiddenFor(model => model.fechaRegistro)
+        @Html.HiddenFor(model => model.fraccionId)
+        @Html.HiddenFor(model => model.volumenSolicitado)
+        @Html.HiddenFor(model => model.volumenAsignado)
+        @Html.HiddenFor(model => model.volumenImportado)
+        @Html.HiddenFor(model => model.estado)
+        @Html.HiddenFor(model => model.reasignacion)
+        @Html.HiddenFor(model => model.esImportadorHistorico)
+        @Html.HiddenFor(model => model.comentarios)
+        @Html.HiddenFor(model => model.volumenReasignacion)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.volumenSolicitadoReasignacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.volumenSolicitadoReasignacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.volumenSolicitadoReasignacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.saldoReportadoImportador, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.saldoReportadoImportador, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.saldoReportadoImportador, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.retirarReasignacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.retirarReasignacion)
+                    @Html.ValidationMessageFor(model => model.retirarReasignacion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Regresar", "Index", new { detalleContingenteId = Model.detalleContingenteId})
+</div>

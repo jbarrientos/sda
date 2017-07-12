@@ -1,0 +1,80 @@
+﻿@model SDA.WebApp.Models.Contribuyente
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar registro</h2>
+
+<h3>Esta seguro de querer eliminar el registro seleccionado?</h3>
+<div>
+    <h4>Importador/Exportador</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoPersona)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoPersona)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefonoFijo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefonoFijo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefonoCelular)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefonoCelular)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Cancelar", "Index")
+        </div>
+    }
+</div>

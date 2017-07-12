@@ -1,0 +1,35 @@
+﻿@model SDA.WebApp.Models.Categoria
+
+@{
+    ViewBag.Title = "GenerarCortes";
+}
+
+<h2>Generar Cortes</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>@Model.nombre - @ViewBag.tratado.nombre</h4>
+        <hr />
+        <div class="well">
+            <p>Para generar los cortes de desgravación para la categoria seleccionada de clic al botón azul.</p>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.categoriaId)
+            @Html.HiddenFor(model => model.tratadoId)
+            @Html.HiddenFor(model => model.aniosDesgravacion)
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="submit" value="Generar cortes" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Cancelar", "Details", new { id = Model.categoriaId })
+</div>

@@ -1,0 +1,147 @@
+﻿@model SDA.WebApp.ViewModels.DetalleAsignacionIndeViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Detalle Asignación @Model.Asignacion.DetalleContingente.anio</h2>
+<h3>@Model.Asignacion.DetalleContingente.Contingente.TipoContingente.nombre</h3>
+
+<p>
+    @if (!Model.Asignacion.Cerrada)
+    {
+        @Html.ActionLink("Aplicar y Cerrar Asignación", "Close", "Asignaciones",
+    new { id = Model.Asignacion.Id }, new { @class = "btn btn-primary btn-sm" })
+    }
+    
+
+
+    @*@Html.ActionLink("Regresar", "SummaryContingentes", "Contingente", new { year = ViewBag.detalle.anio }, new { @class = "btn btn-default" })*@
+
+</p>
+<table class="table table-bordered table-hover" id="tabla">
+    <thead>
+        <tr>
+            <th>
+                No. Solicitud
+            </th>
+            <th>
+                Importador
+            </th>
+            <th>
+                NIT
+            </th>
+            <th>
+                Categoría
+            </th>
+
+            <th>
+                Solicitado
+            </th>
+            <th>
+                Asignado
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.Detalles)
+            {
+            <tr data-id="@item.Id">
+                <td>
+                    @Html.DisplayFor(modelItem => item.SolicitudId)
+                </td>
+                <td>
+                    @if (Model.Asignacion.DetalleContingente.Contingente.TipoContingente.DistribuirPorFraccion)
+                    {
+                        @Html.ActionLink(item.Solicitud.contribuyente.nombre, "Details",
+                            "DetalleSolicitud", new { id = item.SolicitudId }, new { })
+                    }
+                    else
+                    {
+                        @item.Solicitud.contribuyente.nombre
+                    }
+
+                </td>
+                <td style="width:15%">
+                    @Html.DisplayFor(modelItem => item.Solicitud.contribuyente.nit)
+                </td>
+                <td>
+                    @if (item.Solicitud.esImportadorHistorico == "Y")
+                    {
+                        <span class="label label-primary">Histórico</span>
+                    }
+                    else
+                    {
+                        <span class="label label-success">Nuevo</span>
+                    }
+                </td>
+
+                <td style="text-align:right">
+                    @item.Solicitado.ToString("###,##0.00")
+                </td>
+                <td style="text-align:right">
+                    @item.Asignado.ToString("###,##0.00")
+                </td>
+                <td>
+                    @if (!item.Asignacion.Cerrada)
+                    {
+                        @Html.ActionLink("Cambios", "Index", "CambiosAsignacion", new { id = item.Id },
+    new { @class = "btn btn-warning btn-sm" })
+                    }
+
+
+                </td>
+
+
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('#tabla').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'copy',
+                        text: 'Copiar Datos'
+                    }
+                ],
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+
+            //$("#btnAsignacion").on('click', function (event) {
+
+            //    bootbox.confirm("En realidad desea ejecutar el proceso de Asignación de Contingente?",
+            //        function (result) {
+            //            if (!result)
+            //                event.preventDefault();
+            //        });
+
+            //});
+
+
+
+
+        });
+    </script>
+}
+

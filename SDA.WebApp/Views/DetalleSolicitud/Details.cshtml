@@ -1,0 +1,45 @@
+﻿@model SDA.WebApp.ViewModels.DetalleSolicitudDetailsViewModel
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h3>Solicitud No. @Model.Solicitud.solicitudId - @Model.Solicitud.contribuyente.nombre</h3>
+<h4>@Model.Solicitud.DetalleContingente.Contingente.TipoContingente.nombre @Model.Solicitud.DetalleContingente.anio</h4>
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Fracción</th>
+            <th>% Aplicado</th>
+            <th>Solicitado</th>
+            <th>Asignado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Fracciones)
+        {
+            <tr>
+                <td>@item.Fraccion.codigo</td>
+                <td>@item.Fraccion.nombre</td>
+                <td style="text-align:right">@item.PorcentajeAplicado.ToString("###,###0.00")</td>
+                <td style="text-align:right">@item.Solicitado.ToString("###,###0.00")</td>
+                <td style="text-align:right">@item.Asignado.ToString("###,###0.00")</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">
+                TOTALES
+            </td>
+            <td style="text-align:right">
+                @Model.TotalSolicitado.ToString("###,##0.00")
+            </td>
+            <td style="text-align:right">
+                @Model.TotalAsignado.ToString("###,##0.00")
+            </td>
+        </tr>
+    </tfoot>
+
+</table>
+

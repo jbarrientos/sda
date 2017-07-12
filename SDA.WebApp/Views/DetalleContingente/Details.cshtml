@@ -1,0 +1,58 @@
+﻿@model SDA.WebApp.Models.DetalleContingente
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h3>@Model.Contingente.Tratado.nombre</h3>
+<h4>@Model.Contingente.TipoContingente.nombre @Model.anio</h4>
+<table class="table table-striped table-bordered" style="width:50%">
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.anio)</td>
+        <td>@Html.DisplayFor(model => model.anio)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.monto)</td>
+        <td>@Html.DisplayFor(model => model.monto)</td>
+    </tr>
+    <tr>
+        <td>Monto Nuevos</td>
+        <td>@Model.montoNuevo.ToString("###,###,##0.00")</td>
+    </tr>
+    <tr>
+        <td>Monto Históricos</td>
+        <td>@Model.MontoHistoricos.ToString("###,###,##0.00")</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.fechaInicio)</td>
+        <td>@Html.DisplayFor(model => model.fechaFin)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.fechaReasignacion)</td>
+        <td>@Html.DisplayFor(model => model.fechaReasignacion)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.fechaInicioSolicitudes)</td>
+        <td>@Html.DisplayFor(model => model.fechaInicioSolicitudes)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.fechaFinSolicitudes)</td>
+        <td>@Html.DisplayFor(model => model.fechaFinSolicitudes)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.fechaInicioSolicitudesRe)</td>
+        <td>@Html.DisplayFor(model => model.fechaInicioSolicitudesRe)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.fechaFinSolicitudesRe)</td>
+        <td>@Html.DisplayFor(model => model.fechaFinSolicitudesRe)</td>
+    </tr>
+</table>
+
+
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.detalleContingenteId },
+    new { @class = "btn btn-primary" }) 
+    @Html.ActionLink("Regresar", "Index", new { contingenteId = Model.contingenteId },
+    new { @class = "btn btn-default" })
+</p>

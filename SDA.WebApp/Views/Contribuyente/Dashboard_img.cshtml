@@ -1,0 +1,249 @@
+﻿@model SDA.WebApp.ViewModels.DashboardImportadorViewModel
+@using Microsoft.AspNet.Identity.EntityFramework;
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<h1><span class="glyphicon glyphicon-user" aria-hidden="true"></span> @Model.Importador.nombre (@Model.Importador.nit)</h1>
+@*@foreach (var rol in ViewBag.roles)
+    {
+        @Html.Display(((IdentityRole)rol).Name)
+    }*@
+<hr />
+
+
+
+<h2>Gestión de los contingentes arancelarios solicitados @Model.Anio</h2>
+<hr />
+
+
+<div class="row">
+    @if (Model.Solicitudes.Count() == 0)
+    {
+        <div class="jumbotron">
+            <h1>@Model.Importador.nombre</h1>
+            <p>No posee solicitudes para contingentes</p>
+        </div>
+    }
+    @foreach (var item in Model.Solicitudes)
+    {
+
+        <div class="col-md-3 col-md-offset-0 border-bot">
+
+            <div class="panel panel-default panel-solicitud">
+                <div class="panel-heading">
+
+                    <h4 class="panel-title">
+                        <strong>
+                            @item.TipoContingente.nombre.Substring(0,
+                                                   (item.TipoContingente.nombre.Length > 30 ? 30 : item.TipoContingente.nombre.Length))
+                        </strong>
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <table style="width:100%">
+                            <tr>
+                                <td><img src="@item.TipoContingente.NombreImagen" class="img-contingente" /></td>
+                                <td style="text-align:right">
+
+                                    @Html.ActionLink(@item.Id, "ConsultaImportador", "Solicitud",
+                            new { id = item.Id }, new { @class = "btn btn-primary" })
+
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+
+                </div>
+                <table class="table table-bordered">
+                    <tr>
+                        <td>Estado</td>
+                        <td>@item.Estado</td>
+                    </tr>
+                    <tr>
+                        <td>Fecha solicitud</td>
+                        <td>@item.FechaRegistro.ToString("dd/mm/yyyy")</td>
+                    </tr>
+                    <tr>
+                        <td>Solicitado</td>
+                        <td style="text-align:right">@item.VolumenSolicitado.ToString("###,###,##0.00")</td>
+                    </tr>
+                    <tr>
+                        <td>Asignado</td>
+                        <td style="text-align:right">@item.VolumenAsignado.ToString("###,###,##0.00")</td>
+                    </tr>
+                    <tr>
+                        <td>Importado</td>
+                        <td style="text-align:right">@item.VolumenImportado.ToString("###,###,##0.00")</td>
+                    </tr>
+                    <tr>
+                        <td>Saldo</td>
+                        <td style="text-align:right">@item.VolumenARedistribuir.ToString("###,###,##0.00")</td>
+                    </tr>
+                    <tr>
+                        <td>Unidad</td>
+                        <td>@item.UnidadMedida.Abreviatura</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (item.DetalleContigente != null && item.DetalleContigente.NotificacionesEnviadas)
+                            {
+                                @Html.ActionLink("Notificación", "DownloadNotificacion", "Solicitud",
+                                    new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
+                            }
+                        </td>
+                        <td style="text-align:center">
+                            @if (item.Estado == "Autorizada")
+                            {
+                                @Html.ActionLink("Licencias", "IndexImportador", "Licencia",
+                            new { solicitudId = item.Id }, new { @class = "btn btn-default btn-sm" })
+                            }
+
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+
+
+
+
+
+        </div>
+
+    }
+</div>
+
+
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3>Recepción de solicitudes para contingentes</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered table-hover tabla">
+            <thead>
+                <tr>
+
+                    <th>
+                        Tratado
+                    </th>
+                    <th>Tipo Contingente</th>
+                    <th>
+                        Periodo
+                    </th>
+                    <th>
+                        Inicio Solic.
+                    </th>
+
+                    <th>Fin Solic.</th>
+                    <th></th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model.Contingentes)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tratado.nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TipoContingente.nombre)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Periodo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaInicio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaFinal)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Requisitos", "ConsultaRequisitos", "Requisito",
+                           new { id = item.Contingente.tipoContingenteId }, new { @class = "btn btn-default btn-sm" })
+                        </td>
+                        <td>
+                            @if (!item.YaSolicito)
+                            {
+                                @Html.ActionLink("Solicitar", "New", "Solicitud",
+                           new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })
+                            }
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+    google.charts.load("current", { packages: ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Fracción', 'Volumen', { role: 'style' }],
+          ['Solicitado', 5845.30726383685, '#b87333', ],
+          ['Asignado', 2399.97823661221, 'silver']
+        ]);
+
+        var options = {
+            title: "Demo",
+            bar: { groupWidth: '95%' },
+            legend: 'none',
+        };
+
+        var chart_div = document.getElementById('chart_div');
+        var chart = new google.visualization.ColumnChart(chart_div);
+
+        // Wait for the chart to finish drawing before calling the getImageURI() method.
+        google.visualization.events.addListener(chart, 'ready', function () {
+            chart_div.innerHTML = '<img src="' + chart.getImageURI() + '">';
+            console.log(chart_div.innerHTML);
+        });
+
+        chart.draw(data, options);
+
+    }
+</script>
+
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            $('.tabla').dataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+
+
+

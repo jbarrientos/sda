@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SDA.WebApp.Models.Partida>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Partidas</h2>
+
+<p>
+    @Html.ActionLink("Nueva Partida", "Create")
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.codigo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td style="width:70%">
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.codigo)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.partidaId }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.partidaId }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.partidaId })
+        </td>
+    </tr>
+}
+
+</table>

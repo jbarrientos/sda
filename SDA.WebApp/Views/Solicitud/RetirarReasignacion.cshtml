@@ -1,0 +1,54 @@
+﻿@model SDA.WebApp.Models.Solicitud
+
+@{
+    ViewBag.Title = "RetirarReasignacion";
+}
+
+<h2>RetirarReasignacion</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Retirar de reasignación: @ViewBag.importador.nombre</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.solicitudId)
+        @Html.HiddenFor(model => model.contribuyenteId)
+        @Html.HiddenFor(model => model.detalleContingenteId)
+        @Html.HiddenFor(model => model.fraccionId)
+        @Html.HiddenFor(model => model.unidadMedidaId)
+        @Html.HiddenFor(model => model.fechaRegistro)
+        @Html.HiddenFor(model => model.volumenSolicitado)
+        @Html.HiddenFor(model => model.volumenAsignado)
+        @Html.HiddenFor(model => model.volumenImportado)
+        @Html.HiddenFor(model => model.estado)
+        @Html.HiddenFor(model => model.reasignacion)
+        @Html.HiddenFor(model => model.esImportadorHistorico)
+        @Html.HiddenFor(model => model.comentarios)
+        @Html.HiddenFor(model => model.volumenReasignacion)
+        @Html.HiddenFor(model => model.volumenSolicitadoReasignacion)
+        @Html.HiddenFor(model => model.retirarReasignacion)
+        @Html.HiddenFor(model => model.fechaRetiroReasignacion)
+        @Html.HiddenFor(model => model.fechaSolitudReasignacion)
+        <div class="form-group">
+            @Html.LabelFor(model => model.retirarReasignacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.retirarReasignacion)
+                    @Html.ValidationMessageFor(model => model.retirarReasignacion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

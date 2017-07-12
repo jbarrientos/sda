@@ -1,0 +1,79 @@
+﻿@model SDA.WebApp.Models.Tratado
+
+@{
+    ViewBag.Title = "IndexCategories";
+}
+
+<h2>Categorias de @Html.DisplayFor(model => model.nombre)</h2>
+<hr />
+<table class="table table-bordered table-hover" id="tabla">
+    <thead>
+        <tr>
+            <th>
+                Categoria
+            </th>
+            <th>
+                Descripción
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var categoria in ViewBag.categorias)
+        {
+            <tr>
+                <td style="width:20%">
+                    @categoria.nombre
+                </td>
+                <td style="width:50%">
+                    @categoria.descripcion
+                </td>
+                
+                <td>
+                    @Html.ActionLink("Editar", "Edit", "Categoria", new { id = categoria.categoriaId }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Detalles", "Details", "Categoria", new { id = categoria.categoriaId }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Fracciones", "IndexFracciones", "Categoria", new { id = categoria.categoriaId }, new { @class = "btn btn-default" })
+                    @*@Html.ActionLink("Eliminar", "Delete", new { id = item.tratadoId }, new { @class = "btn btn-default" })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4">
+                <p>
+                    @Html.ActionLink("Nueva categoria", "CreateCategory", "Tratado", 
+                   new { tratadoId = Model.tratadoId },
+                    new { @class = "btn btn-primary" })
+                </p>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabla').dataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+}

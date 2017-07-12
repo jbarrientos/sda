@@ -1,0 +1,42 @@
+﻿@model SDA.WebApp.Models.Fraccion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Fracción</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dai)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.fraccionId }, new { @class="btn btn-primary" }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

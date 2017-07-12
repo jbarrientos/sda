@@ -1,0 +1,73 @@
+﻿@model IEnumerable<SDA.WebApp.Models.Tratado>
+
+@{
+    ViewBag.Title = "Tratados Comerciales";
+}
+
+<h2><span class="glyphicon glyphicon-flag"></span> Acuerdos Comerciales</h2>
+
+<p>
+    @Html.ActionLink("Nuevo tratado", "Create", "Tratado", null,  new { @class = "btn btn-primary btn-sm" })
+    @Html.ActionLink("Contingentes activos", "SummaryContingentes", "Contingente", null, new { @class = "btn btn-info btn-sm" })
+</p>
+<table class="table table-bordered table-hover" id="tabla">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.numeroAnios)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="width:35%">
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechaInicio)
+                </td>
+                <td style="text-align:right">
+                    @Html.DisplayFor(modelItem => item.numeroAnios)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.tratadoId}, new { @class = "btn btn-default btn-sm" }) 
+                    @Html.ActionLink("Detalles", "Details", new { id = item.tratadoId }, new { @class = "btn btn-info btn-sm" }) 
+                    @Html.ActionLink("Contingentes", "Index", "Contingente", new { tratadoId = item.tratadoId }, new { @class = "btn btn-warning btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabla').dataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+}

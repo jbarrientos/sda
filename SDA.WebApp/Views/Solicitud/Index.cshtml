@@ -1,0 +1,256 @@
+﻿@model IEnumerable<SDA.WebApp.ViewModels.IndexSolicitudes>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Solicitudes @ViewBag.detalle.anio - @ViewBag.tipoContingente.nombre</h2>
+@*<h4>
+    <span class="label label-default">
+        Total Contingente: @ViewBag.detalle.monto.ToString("###,##0.00") - Total Solicitado: @ViewBag.TotalSolicitado.ToString("###,##0.00") - Total Asignado: @ViewBag.TotalAsignado.ToString("###,##0.00") - Disponible: @ViewBag.TotalDisponible.ToString("###,##0.00")
+    </span>
+</h4>*@
+<p>
+    @if (!ViewBag.detalle.NotificacionesGeneradas)
+    {
+    @Html.ActionLink("Descargar Notificaciones", "GenerateNote", "DetalleContingente",
+        new { id = ViewBag.detalle.detalleContingenteId }, new { @class = "btn btn-default btn-sm" })
+
+    }
+    @*@Html.ActionLink("Descargar Notificaciones", "GenerateNote", "DetalleContingente",
+        new { id = ViewBag.detalle.detalleContingenteId }, new { @class = "btn btn-default btn-sm" })*@
+    @if (!ViewBag.cerrada)
+    {
+        @*@Html.ActionLink("Generar Asignación", "New", "Asignaciones",
+            new { id = ViewBag.detalle.detalleContingenteId },
+            new { @class = "btn btn-primary", id = "btnAsignacion" })*@
+        <button class="btn btn-primary btn-sm" id="btnAsignacion"
+                data-item="@ViewBag.detalle.detalleContingenteId">
+            Generar Asignación
+        </button>
+    }
+    @if (ViewBag.detalle.NotificacionesGeneradas && !ViewBag.detalle.NotificacionesCargadas)
+    {
+        @Html.ActionLink("Subir Notificaciones firmadas", "UploadNotificacionesFirmadas", "DetalleContingente",
+        new { id = ViewBag.detalle.detalleContingenteId }, new { @class = "btn btn-warning btn-sm" })
+    }
+    @if (ViewBag.detalle.NotificacionesCargadas && !ViewBag.detalle.NotificacionesEnviadas)
+    {
+        @Html.ActionLink("Enviar Aviso de Notificaciones", "SendEmailNotificaciones", "DetalleContingente",
+        new { id = ViewBag.detalle.detalleContingenteId }, new { @class = "btn btn-danger btn-sm" })
+    }
+
+
+
+    @Html.ActionLink("Consulta Asignaciones", "Index", "Asignaciones",
+    new { id = ViewBag.detalle.detalleContingenteId }, new { @class = "btn btn-success btn-sm" })
+
+    @if (ViewBag.detalle.Contingente.TipoContingente.EspecificarFraccion)
+    {
+        @Html.ActionLink("Asignación por Fracción Arancelaria", "ConsultaPorFraccion",
+       "DetalleSolicitud",
+        new { id = ViewBag.detalle.detalleContingenteId },
+        new { @class = "btn btn-info btn-sm", id = "btnConsulta" })
+    }
+    @*@Html.ActionLink("Regresar", "SummaryContingentes", "Contingente", new { year = ViewBag.detalle.anio }, new { @class = "btn btn-default" })*@
+
+</p>
+<table class="table table-bordered table-hover" id="tabla">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Id)</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contribuyente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VolumenSolicitado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VolumenAsignado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VolumenImportado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VolumenARedistribuir)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VolumenSolicitadoReasignacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnidadMedida)
+            </th>
+
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+            {
+            <tr data-id="@item.Id">
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td style="width:20%">
+                    @Html.ActionLink(item.Contribuyente.nombre, "Consultar", new { id = item.Id })
+                </td>
+                <td>
+                    @if (item.Estado == "Anulada")
+                    {
+                        <span class="label label-danger">@item.Estado</span>
+                    }
+                    else
+                    {
+                        <span class="label label-success">@item.Estado</span>
+                    }
+
+                </td>
+
+
+
+                <td style="text-align:right">
+                    @Html.DisplayFor(modelItem => item.VolumenSolicitado)
+                </td>
+                <td style="text-align:right">
+                    @Html.DisplayFor(modelItem => item.VolumenAsignado)
+                </td>
+                <td style="text-align:right">
+                    @Html.DisplayFor(modelItem => item.VolumenImportado)
+                </td>
+                <td style="text-align:right">
+                    @Html.DisplayFor(modelItem => item.VolumenARedistribuir)
+                </td>
+                <td style="text-align:right">
+                    @Html.DisplayFor(modelItem => item.VolumenSolicitadoReasignacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnidadMedida.nombre)
+                </td>
+
+                <td>
+                    @*@Html.ActionLink("Editar", "Edit", new { solicitudId = item.Id }, new { @class = "btn btn-info" })*@
+                    @*@Html.ActionLink("Retirar", "RetirarReasignacion", new { solicitudId = item.Id }, new { @class = "btn btn-info" })*@
+                    @if (item.Estado != "Anulada")
+                    {
+                        @Html.ActionLink("Licen.", "Index", "Licencia",
+                   new { solicitudId = item.Id }, new { @class = "btn btn-success btn-sm" })
+                    }
+                    
+                </td>
+
+                <td>
+                    @if (item.Estado == "Solicitada")
+                    {
+
+                        <button id="btnOk" title="Aprobar" data-solicitud-id="@item.Id"
+                                class="btn btn-info btn-sm js-delete">
+                            Aprobar
+                        </button>
+                    }
+                </td>
+                <td>
+                    @if (!ViewBag.cerrada && item.Estado != "Anulada")
+                    {
+                        @Html.ActionLink("Retirar solicitud", "Remove", "Solicitud",
+                   new { id = item.Id }, new { @class = "btn btn-warning btn-sm" })
+                    }
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('#tabla').DataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontro ningun registro - lo sentimos",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtrado desde _MAX_ total de registros)",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+
+            //$("#btnAsignacion").on('click', function (event) {
+
+            //    bootbox.confirm("En realidad desea ejecutar el proceso de Asignación de Contingente?",
+            //        function (result) {
+            //            if (!result)
+            //                event.preventDefault();
+            //        });
+
+            //});
+
+
+
+            $("#tabla").on("click", ".js-delete", function (e) {
+                var button = $(this);
+
+
+                bootbox.confirm("Por favor confirmar la aprobación de la solicitud No. " +
+                    button.attr("data-solicitud-id") + "?", function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/solicitudes/" + button.attr("data-solicitud-id"),
+                                method: "PUT",
+                                success: function (data) {
+
+                                    var row = table.row('[data-id="' +
+                                        button.attr("data-solicitud-id") + '"]'),
+                                        cols = row.data();
+                                    //
+
+                                    cols[2] = 'Aprobada';
+                                    cols[10] = '';
+
+
+                                    row.data(cols);
+
+                                    toastr.success("Solicitud ha sido aprobada.");
+                                }
+                            });
+                        }
+                    });
+
+            });
+
+            //
+            $("#btnAsignacion").click(function () {
+                var button = $(this);
+
+                bootbox.confirm("En realidad desea realizar el proceso de asignación del contingente @ViewBag.tipoContingente.nombre?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/asignacion/" + button.attr("data-item"),
+                            method: "POST",
+                            success: function (data) {
+                                button.hide();
+                                toastr.info("Proceso de Asignación Realizado Exitosamente.");
+
+                            },
+                            fail: function () {
+                                toastr.error("Ocurrió un error. No se aplicaron los movimientos.");
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}
+

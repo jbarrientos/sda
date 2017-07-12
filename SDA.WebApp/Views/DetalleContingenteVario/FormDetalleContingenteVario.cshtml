@@ -1,0 +1,136 @@
+﻿@model SDA.WebApp.ViewModels.DetalleContingenteVarioFormViewModel
+@{
+    ViewBag.Title = "Nueva empresa";
+}
+
+<h2>@Model.Contingente.TipoContingente.nombre</h2>
+<form id="newImportador">
+    <!-- div.form-group>label+input[type='text'].form-control -->
+    <div class="form-group">
+        <label>Empresa</label>
+        <div class="tt-container">
+            
+                <input type="text" required id="importador" name="importador"
+                       data-rule-validImportador="true"
+                       style="width:200%"
+                       placeholder="Por favor digite el nombre de la empresa..."
+                       value="" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @if (Model.Contingente.CalcularPorcentaje)
+        { <label>Porcentaje</label> }
+        else
+        { <label>Valor</label> }
+        <div class="tt-container">
+            <input type="text" value=""
+                   id="porcentaje" name="porcentaje" class="form-control" />
+        </div>
+    </div>
+
+    
+
+    <p><button class="btn btn-primary">Agregar</button> @Html.ActionLink("Salir", "Index", new { id = Model.Contingente.Id }, new { @class = "btn btn-default" })</p>
+</form>
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+
+            var vm =
+            {
+                ContingenteVarioId : "@Model.Contingente.Id"
+            };
+
+            
+
+            var importadores = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                //prefetch: '../data/films/post_1960.json',
+                remote: {
+                    url: '/api/contribuyentes?query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            
+
+            $('#importador').typeahead(
+                {
+                    minLength: 3,
+                    highlight: true
+                }, {
+                name: 'importadores',
+                display: 'nombre',
+                source: importadores
+                }).on("typeahead:select", function (e, importador) {
+
+                    vm.ContribuyenteId = importador.contribuyenteId;
+                    vm.ContingenteVarioId = "@Model.Contingente.Id"
+                    console.log(vm);
+
+                });
+
+            $("#porcentaje").on("change", function(){
+                vm.Porcentaje = this.value;
+                console.log(vm);
+            });
+
+            
+
+            $.validator.addMethod("validImportador", function () {
+                return vm.ContribuyenteId && vm.ContribuyenteId !== 0;
+            }, "Por favor seleccione un importador valido");
+
+            
+
+            var validator = $("#newImportador").validate({
+                submitHandler: function () {
+
+                    //e.preventDefault();
+                    // console.log("vm Object:" + vm);
+                    $.ajax({
+                        url: "/api/detalleContingenteVario",
+                        method: "post",
+                        data: vm
+                    }).done(function (data) {
+
+                        toastr.success("Empresa " + $("#importador").val() + 
+                            ", agregada a contingente de manera exitosa.");
+
+                        $("#importador").typeahead("val", "");
+                        $("#porcentaje").val("0.00");
+
+                        vm = { };
+
+                        validator.resetForm();
+
+                    }).fail(function () {
+                        toastr.error("Ocurrio un error inesperado.");
+                    });
+                    return false;
+
+                }
+            });
+
+            //$("#newRental").submit(function (e) {
+
+
+
+            //});
+
+        });
+    </script>
+}
+
+
+
+
+
+
+

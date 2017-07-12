@@ -1,0 +1,37 @@
+﻿@model SDA.WebApp.ViewModels.IndexContingenteModel
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>@Model.TipoContingente.nombre </h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Volumen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Volumen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VolumenHistoricosPercent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VolumenHistoricosPercent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VolumenNuevosPercent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VolumenNuevosPercent)
+        </dd>
+
+    </dl>
+</div>
