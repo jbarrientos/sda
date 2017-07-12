@@ -112,8 +112,8 @@ namespace SDA.WebApp.Controllers
                 "<hr /><p>Se ha creado una nueva solicitud para creación de usuario en SDA.</p>");
             
             this.Flash("info", 
-                "Se ha enviado su solicitud, en 24 horas recibira " +
-                "información con respecto al tramite de su solicitud.");
+                "<h4>Se ha enviado su solicitud, en 24 horas recibira " +
+                "información con respecto al tramite de su solicitud.</h4>");
             return RedirectToAction("Index", "Home");
         }
 
