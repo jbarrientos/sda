@@ -9,7 +9,16 @@ namespace SDA.WebApp
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/bootbox.js",
+                        "~/Scripts/toastr.js",
+                        "~/Scripts/typeahead.bundle.js",
+                        "~/Scripts/ckeditor/ckeditor.js",
+                        "~/scripts/datatables/jquery.datatables.js",
+                        "~/scripts/datatables/datatables.bootstrap.js",
+                        "~/scripts/datatables/dataTables.buttons.js",
+                        "~/scripts/datatables/buttons.html5.js",
+                        "~/Scripts/jquery.maskedinput.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -24,8 +33,17 @@ namespace SDA.WebApp
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      //"~/Content/bootstrap-cosmo.css",
+                      //"~/Content/bootstrap-flatly.css",
+                      //"~/Content/bootstrap-spacelab.css",
+                      "~/Content/bootstrap-lumen.css",
+                      
+                      "~/Content/datatables/css/datatables.bootstrap.css",
+                      "~/Content/toastr.css",
+                      "~/Content/typeahead.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Chart").Include("~/Scripts/Chart.js"));
         }
     }
 }

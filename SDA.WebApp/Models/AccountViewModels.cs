@@ -48,17 +48,33 @@ namespace SDA.WebApp.Models
 
     public class LoginViewModel
     {
-        [Required]
+        //[Required]
+        //[Display(Name = "Email")]
+        //[EmailAddress]
+        //public string Email { get; set; }
+
+        //[Required]
+        //[DataType(DataType.Password)]
+        //[Display(Name = "Password")]
+        //public string Password { get; set; }
+
+        //[Display(Name = "Remember me?")]
+        //public bool RememberMe { get; set; }
+
         [Display(Name = "Email")]
         [EmailAddress]
         public string Email { get; set; }
 
+
+        [Display(Name = "NIT")]
+        public string UserName { get; set; }
+
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Contraseña")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Recordarme?")]
         public bool RememberMe { get; set; }
     }
 
@@ -68,6 +84,15 @@ namespace SDA.WebApp.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        public string Nit { get; set; }
+
+        public string Dui { get; set; }
+
+        public string Direccion { get; set; }
+
+        public string Nombre { get; set; }
+
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

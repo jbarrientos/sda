@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 60px;
     padding-bottom: 20px;
 }
 
@@ -21,4 +21,56 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+textarea{
+    resize:none;
+    width:100%;
+    border-radius:5px;
+}
+#jumbo-header{
+    /*background-image: url(../Content/img/main-2.jpg);*/
+    background-size: cover;
+    margin-top:20px;
+    /*color: #EAF3F9;*/
+    margin:0;
+    /*height:80%;*/
+    text-align:center;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.panel-solicitud{
+    width: 100%;
+    height: auto;
+}
+
+.border-bot{
+    
+    /* border: 1px solid #cccccc;*/
+    border-radius:5px;
+    /*margin: 5px 1px;*/
+    height: auto;
+    
+}
+
+
+.tt-container{
+    position:relative;
+}
+
+
+.requerido:after 
+{
+    content: " *";
+    font-weight: bold;
+    color: red; 
+}
+
+.img-contingente{
+    width:50px;
+    height:40px;
+    text-align:center;
+    margin: 5px 5px 5px 5px;
 }

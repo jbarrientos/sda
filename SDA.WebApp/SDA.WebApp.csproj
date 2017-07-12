@@ -44,20 +44,80 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.1.0\lib\net40\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.10\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.1.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.1.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.1.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.1.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.1.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.1.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MvcFlashMessages, Version=0.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvcFlashMessages.0.3.1\lib\MvcFlashMessages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RazorPDF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorPDF.1.0.0\lib\net45\RazorPDF.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -167,31 +227,1104 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AnioCategoriaController.cs" />
+    <Compile Include="Controllers\Api\AsignacionController.cs" />
+    <Compile Include="Controllers\Api\ContingenteVarioController.cs" />
+    <Compile Include="Controllers\Api\ContribuyentesController.cs" />
+    <Compile Include="Controllers\Api\DetalleContingenteVarioController.cs" />
+    <Compile Include="Controllers\Api\DocumentoContingenteController.cs" />
+    <Compile Include="Controllers\Api\HeaderAduanaController.cs" />
+    <Compile Include="Controllers\Api\NotificacionesInternasController.cs" />
+    <Compile Include="Controllers\Api\ParametrosController.cs" />
+    <Compile Include="Controllers\Api\PreregistrosController.cs" />
+    <Compile Include="Controllers\Api\RequisitosController.cs" />
+    <Compile Include="Controllers\Api\RequisitosSolicitudController.cs" />
+    <Compile Include="Controllers\Api\SolicitudesController.cs" />
+    <Compile Include="Controllers\AsignacionesController.cs" />
+    <Compile Include="Controllers\CambiosAsignacionController.cs" />
+    <Compile Include="Controllers\CapituloController.cs" />
+    <Compile Include="Controllers\CategoriaController.cs" />
+    <Compile Include="Controllers\ContingenteController.cs" />
+    <Compile Include="Controllers\ContingenteVarioController.cs" />
+    <Compile Include="Controllers\ContribuyenteController.cs" />
+    <Compile Include="Controllers\DetalleAduanaController.cs" />
+    <Compile Include="Controllers\DetalleAsignacionesController.cs" />
+    <Compile Include="Controllers\DetalleContingenteController.cs" />
+    <Compile Include="Controllers\DetalleContingenteVarioController.cs" />
+    <Compile Include="Controllers\DetalleSolicitudController.cs" />
+    <Compile Include="Controllers\DocumentoContingenteController.cs" />
+    <Compile Include="Controllers\FraccionController.cs" />
+    <Compile Include="Controllers\FraccionProductoController.cs" />
+    <Compile Include="Controllers\FraccionTipoContingenteController.cs" />
+    <Compile Include="Controllers\FraccionTratadoController.cs" />
+    <Compile Include="Controllers\HeaderAduanaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LicenciaController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NotificacionController.cs" />
+    <Compile Include="Controllers\NotificacionInternaController.cs" />
+    <Compile Include="Controllers\PaisController.cs" />
+    <Compile Include="Controllers\ParametrosController.cs" />
+    <Compile Include="Controllers\PartidaController.cs" />
+    <Compile Include="Controllers\PreregistroController.cs" />
+    <Compile Include="Controllers\ProductoController.cs" />
+    <Compile Include="Controllers\RequisitoController.cs" />
+    <Compile Include="Controllers\RequisitoSolicitudController.cs" />
+    <Compile Include="Controllers\RolController.cs" />
+    <Compile Include="Controllers\SeccionController.cs" />
+    <Compile Include="Controllers\SolicitudController.cs" />
+    <Compile Include="Controllers\TipoContingenteController.cs" />
+    <Compile Include="Controllers\TipoNomenclaturaController.cs" />
+    <Compile Include="Controllers\TratadoController.cs" />
+    <Compile Include="Controllers\UnidadMedidaController.cs" />
+    <Compile Include="dtos\NewDetalleContingenteVarioDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\NotificacionHelper.cs" />
+    <Compile Include="Helpers\Utils.cs" />
+    <Compile Include="Migrations\201701101925281_Initial.cs" />
+    <Compile Include="Migrations\201701101925281_Initial.Designer.cs">
+      <DependentUpon>201701101925281_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701102357197_AddUpdateContingenteTable.cs" />
+    <Compile Include="Migrations\201701102357197_AddUpdateContingenteTable.Designer.cs">
+      <DependentUpon>201701102357197_AddUpdateContingenteTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701111809510_AddActividadEconomicaTable.cs" />
+    <Compile Include="Migrations\201701111809510_AddActividadEconomicaTable.Designer.cs">
+      <DependentUpon>201701111809510_AddActividadEconomicaTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701112133177_AddPreregistroTable.cs" />
+    <Compile Include="Migrations\201701112133177_AddPreregistroTable.Designer.cs">
+      <DependentUpon>201701112133177_AddPreregistroTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701112156579_AddFieldPreregistroTable.cs" />
+    <Compile Include="Migrations\201701112156579_AddFieldPreregistroTable.Designer.cs">
+      <DependentUpon>201701112156579_AddFieldPreregistroTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701120028228_AddFieldsPreregistroTable2.cs" />
+    <Compile Include="Migrations\201701120028228_AddFieldsPreregistroTable2.Designer.cs">
+      <DependentUpon>201701120028228_AddFieldsPreregistroTable2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701121856270_AddNotificacionesTable.cs" />
+    <Compile Include="Migrations\201701121856270_AddNotificacionesTable.Designer.cs">
+      <DependentUpon>201701121856270_AddNotificacionesTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701121950486_AddTipoPersonaFieldToPreregistro.cs" />
+    <Compile Include="Migrations\201701121950486_AddTipoPersonaFieldToPreregistro.Designer.cs">
+      <DependentUpon>201701121950486_AddTipoPersonaFieldToPreregistro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701122011072_AddFieldsToPreregistroTable.cs" />
+    <Compile Include="Migrations\201701122011072_AddFieldsToPreregistroTable.Designer.cs">
+      <DependentUpon>201701122011072_AddFieldsToPreregistroTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701122202238_UpdateTipoContingenteTable.cs" />
+    <Compile Include="Migrations\201701122202238_UpdateTipoContingenteTable.Designer.cs">
+      <DependentUpon>201701122202238_UpdateTipoContingenteTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701122358256_AddRequisitosTable.cs" />
+    <Compile Include="Migrations\201701122358256_AddRequisitosTable.Designer.cs">
+      <DependentUpon>201701122358256_AddRequisitosTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701130010531_AddRequisitoSolicitudTable.cs" />
+    <Compile Include="Migrations\201701130010531_AddRequisitoSolicitudTable.Designer.cs">
+      <DependentUpon>201701130010531_AddRequisitoSolicitudTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701130207248_UpdateFechaEnvioSolicitudToNull.cs" />
+    <Compile Include="Migrations\201701130207248_UpdateFechaEnvioSolicitudToNull.Designer.cs">
+      <DependentUpon>201701130207248_UpdateFechaEnvioSolicitudToNull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701230241325_AddAsignacionTables.cs" />
+    <Compile Include="Migrations\201701230241325_AddAsignacionTables.Designer.cs">
+      <DependentUpon>201701230241325_AddAsignacionTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701230628509_UpdateDetAsignacionTable.cs" />
+    <Compile Include="Migrations\201701230628509_UpdateDetAsignacionTable.Designer.cs">
+      <DependentUpon>201701230628509_UpdateDetAsignacionTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701230632141_UpdateDetAsignacionTable2.cs" />
+    <Compile Include="Migrations\201701230632141_UpdateDetAsignacionTable2.Designer.cs">
+      <DependentUpon>201701230632141_UpdateDetAsignacionTable2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701241747597_AddEspecificarFraccionFieldToTipoContingente.cs" />
+    <Compile Include="Migrations\201701241747597_AddEspecificarFraccionFieldToTipoContingente.Designer.cs">
+      <DependentUpon>201701241747597_AddEspecificarFraccionFieldToTipoContingente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703022248255_AddCambiosAsignacionTable.cs" />
+    <Compile Include="Migrations\201703022248255_AddCambiosAsignacionTable.Designer.cs">
+      <DependentUpon>201703022248255_AddCambiosAsignacionTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703030627410_UpdateCambioAsignacionTable.cs" />
+    <Compile Include="Migrations\201703030627410_UpdateCambioAsignacionTable.Designer.cs">
+      <DependentUpon>201703030627410_UpdateCambioAsignacionTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703030904531_AddNotificacionesTable1.cs" />
+    <Compile Include="Migrations\201703030904531_AddNotificacionesTable1.Designer.cs">
+      <DependentUpon>201703030904531_AddNotificacionesTable1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703030945004_AddVistoFieldToNotificacion.cs" />
+    <Compile Include="Migrations\201703030945004_AddVistoFieldToNotificacion.Designer.cs">
+      <DependentUpon>201703030945004_AddVistoFieldToNotificacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703091709532_AddDetalleSolicitudTable.cs" />
+    <Compile Include="Migrations\201703091709532_AddDetalleSolicitudTable.Designer.cs">
+      <DependentUpon>201703091709532_AddDetalleSolicitudTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703100552268_AddPercentFieldToDetalleSolic.cs" />
+    <Compile Include="Migrations\201703100552268_AddPercentFieldToDetalleSolic.Designer.cs">
+      <DependentUpon>201703100552268_AddPercentFieldToDetalleSolic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703100606062_AddPercentToDetalleAsignacion.cs" />
+    <Compile Include="Migrations\201703100606062_AddPercentToDetalleAsignacion.Designer.cs">
+      <DependentUpon>201703100606062_AddPercentToDetalleAsignacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703100945025_UpdateMontoNuevoDetalleContingente.cs" />
+    <Compile Include="Migrations\201703100945025_UpdateMontoNuevoDetalleContingente.Designer.cs">
+      <DependentUpon>201703100945025_UpdateMontoNuevoDetalleContingente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703141743237_AddFieldsToTipoContingente.cs" />
+    <Compile Include="Migrations\201703141743237_AddFieldsToTipoContingente.Designer.cs">
+      <DependentUpon>201703141743237_AddFieldsToTipoContingente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703150041253_AddPercentFieldToTipoContingente.cs" />
+    <Compile Include="Migrations\201703150041253_AddPercentFieldToTipoContingente.Designer.cs">
+      <DependentUpon>201703150041253_AddPercentFieldToTipoContingente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703151513165_AddTableContingentesVarios.cs" />
+    <Compile Include="Migrations\201703151513165_AddTableContingentesVarios.Designer.cs">
+      <DependentUpon>201703151513165_AddTableContingentesVarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703151515535_AddFieldTotalRecepcionToContingenteVario.cs" />
+    <Compile Include="Migrations\201703151515535_AddFieldTotalRecepcionToContingenteVario.Designer.cs">
+      <DependentUpon>201703151515535_AddFieldTotalRecepcionToContingenteVario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703151519420_AddTableDetalleContingenteVario.cs" />
+    <Compile Include="Migrations\201703151519420_AddTableDetalleContingenteVario.Designer.cs">
+      <DependentUpon>201703151519420_AddTableDetalleContingenteVario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703201356205_AddFieldsToAduanaHeader.cs" />
+    <Compile Include="Migrations\201703201356205_AddFieldsToAduanaHeader.Designer.cs">
+      <DependentUpon>201703201356205_AddFieldsToAduanaHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703201358119_AddFieldsToAduanaHeader2.cs" />
+    <Compile Include="Migrations\201703201358119_AddFieldsToAduanaHeader2.Designer.cs">
+      <DependentUpon>201703201358119_AddFieldsToAduanaHeader2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703201510585_AddComentariosFieldToHeaderAduana.cs" />
+    <Compile Include="Migrations\201703201510585_AddComentariosFieldToHeaderAduana.Designer.cs">
+      <DependentUpon>201703201510585_AddComentariosFieldToHeaderAduana.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703201656333_UpdateHeaderAduanaTable.cs" />
+    <Compile Include="Migrations\201703201656333_UpdateHeaderAduanaTable.Designer.cs">
+      <DependentUpon>201703201656333_UpdateHeaderAduanaTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703212325178_AddFieldSolicitudesGeneradas.cs" />
+    <Compile Include="Migrations\201703212325178_AddFieldSolicitudesGeneradas.Designer.cs">
+      <DependentUpon>201703212325178_AddFieldSolicitudesGeneradas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703212337428_AddFieldsToSolicitud.cs" />
+    <Compile Include="Migrations\201703212337428_AddFieldsToSolicitud.Designer.cs">
+      <DependentUpon>201703212337428_AddFieldsToSolicitud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703291721506_AddCalcularPorcentajeFieldToContingenteVario.cs" />
+    <Compile Include="Migrations\201703291721506_AddCalcularPorcentajeFieldToContingenteVario.Designer.cs">
+      <DependentUpon>201703291721506_AddCalcularPorcentajeFieldToContingenteVario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703291754502_AddNewFieldsToContingenteVario.cs" />
+    <Compile Include="Migrations\201703291754502_AddNewFieldsToContingenteVario.Designer.cs">
+      <DependentUpon>201703291754502_AddNewFieldsToContingenteVario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703291950398_AddTemplateLicenciaFieldToContingenteVario.cs" />
+    <Compile Include="Migrations\201703291950398_AddTemplateLicenciaFieldToContingenteVario.Designer.cs">
+      <DependentUpon>201703291950398_AddTemplateLicenciaFieldToContingenteVario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703292349203_AddTableDocumentoContingente.cs" />
+    <Compile Include="Migrations\201703292349203_AddTableDocumentoContingente.Designer.cs">
+      <DependentUpon>201703292349203_AddTableDocumentoContingente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703300022026_updateTableDocumentoContingente.cs" />
+    <Compile Include="Migrations\201703300022026_updateTableDocumentoContingente.Designer.cs">
+      <DependentUpon>201703300022026_updateTableDocumentoContingente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704041705010_AddFechaImpresionToLicencia.cs" />
+    <Compile Include="Migrations\201704041705010_AddFechaImpresionToLicencia.Designer.cs">
+      <DependentUpon>201704041705010_AddFechaImpresionToLicencia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704042248326_AddMesesVencimientoToTipoContingente.cs" />
+    <Compile Include="Migrations\201704042248326_AddMesesVencimientoToTipoContingente.Designer.cs">
+      <DependentUpon>201704042248326_AddMesesVencimientoToTipoContingente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704042313457_AddCertificadoToSolicitudes.cs" />
+    <Compile Include="Migrations\201704042313457_AddCertificadoToSolicitudes.Designer.cs">
+      <DependentUpon>201704042313457_AddCertificadoToSolicitudes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704052258048_AddParametrosTable.cs" />
+    <Compile Include="Migrations\201704052258048_AddParametrosTable.Designer.cs">
+      <DependentUpon>201704052258048_AddParametrosTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705051722337_AddNombreNotificacionFieldToContribuyente.cs" />
+    <Compile Include="Migrations\201705051722337_AddNombreNotificacionFieldToContribuyente.Designer.cs">
+      <DependentUpon>201705051722337_AddNombreNotificacionFieldToContribuyente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705051728364_AddNotificacionFieldsToDetalleContingente.cs" />
+    <Compile Include="Migrations\201705051728364_AddNotificacionFieldsToDetalleContingente.Designer.cs">
+      <DependentUpon>201705051728364_AddNotificacionFieldsToDetalleContingente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705051801395_addTemplateNotificacionFieldToContingente.cs" />
+    <Compile Include="Migrations\201705051801395_addTemplateNotificacionFieldToContingente.Designer.cs">
+      <DependentUpon>201705051801395_addTemplateNotificacionFieldToContingente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705081950041_AddNotificacionFileToSolicitud.cs" />
+    <Compile Include="Migrations\201705081950041_AddNotificacionFileToSolicitud.Designer.cs">
+      <DependentUpon>201705081950041_AddNotificacionFileToSolicitud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705092223151_AddNotificacionPathToSolicitud.cs" />
+    <Compile Include="Migrations\201705092223151_AddNotificacionPathToSolicitud.Designer.cs">
+      <DependentUpon>201705092223151_AddNotificacionPathToSolicitud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705152001149_AddRepresentanteLegalFieldsToImportador.cs" />
+    <Compile Include="Migrations\201705152001149_AddRepresentanteLegalFieldsToImportador.Designer.cs">
+      <DependentUpon>201705152001149_AddRepresentanteLegalFieldsToImportador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705152012510_AddFieldsRepresentanteToImportador.cs" />
+    <Compile Include="Migrations\201705152012510_AddFieldsRepresentanteToImportador.Designer.cs">
+      <DependentUpon>201705152012510_AddFieldsRepresentanteToImportador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705152027029_AddFieldsRepresentanteToImportador2.cs" />
+    <Compile Include="Migrations\201705152027029_AddFieldsRepresentanteToImportador2.Designer.cs">
+      <DependentUpon>201705152027029_AddFieldsRepresentanteToImportador2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705152045079_UpdateNullableActividadEconomicaPreregistro.cs" />
+    <Compile Include="Migrations\201705152045079_UpdateNullableActividadEconomicaPreregistro.Designer.cs">
+      <DependentUpon>201705152045079_UpdateNullableActividadEconomicaPreregistro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705152047334_UpdateNullableActividadEconomicaPreregistro2.cs" />
+    <Compile Include="Migrations\201705152047334_UpdateNullableActividadEconomicaPreregistro2.Designer.cs">
+      <DependentUpon>201705152047334_UpdateNullableActividadEconomicaPreregistro2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705152049494_UpdateNullableActividadEconomicaPreregistro3.cs" />
+    <Compile Include="Migrations\201705152049494_UpdateNullableActividadEconomicaPreregistro3.Designer.cs">
+      <DependentUpon>201705152049494_UpdateNullableActividadEconomicaPreregistro3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705301622457_AddAbreviaturaFieldToUnidadMedida.cs" />
+    <Compile Include="Migrations\201705301622457_AddAbreviaturaFieldToUnidadMedida.Designer.cs">
+      <DependentUpon>201705301622457_AddAbreviaturaFieldToUnidadMedida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706131650109_AddSignedLicenseToLicense.cs" />
+    <Compile Include="Migrations\201706131650109_AddSignedLicenseToLicense.Designer.cs">
+      <DependentUpon>201706131650109_AddSignedLicenseToLicense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706131700477_AddUploadedLicenseStatusToLicense.cs" />
+    <Compile Include="Migrations\201706131700477_AddUploadedLicenseStatusToLicense.Designer.cs">
+      <DependentUpon>201706131700477_AddUploadedLicenseStatusToLicense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706131703093_AddUploadedLicenseDateToLicense.cs" />
+    <Compile Include="Migrations\201706131703093_AddUploadedLicenseDateToLicense.Designer.cs">
+      <DependentUpon>201706131703093_AddUploadedLicenseDateToLicense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706131707016_AddUploadedLicenseNullDateToLicense.cs" />
+    <Compile Include="Migrations\201706131707016_AddUploadedLicenseNullDateToLicense.Designer.cs">
+      <DependentUpon>201706131707016_AddUploadedLicenseNullDateToLicense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706132255527_AddTemplateActaFieldToTipoContingente.cs" />
+    <Compile Include="Migrations\201706132255527_AddTemplateActaFieldToTipoContingente.Designer.cs">
+      <DependentUpon>201706132255527_AddTemplateActaFieldToTipoContingente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706132345074_AddFechaAcuerdoToLicencia.cs" />
+    <Compile Include="Migrations\201706132345074_AddFechaAcuerdoToLicencia.Designer.cs">
+      <DependentUpon>201706132345074_AddFechaAcuerdoToLicencia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706161608486_UpdatePreregistroTable.cs" />
+    <Compile Include="Migrations\201706161608486_UpdatePreregistroTable.Designer.cs">
+      <DependentUpon>201706161608486_UpdatePreregistroTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706161609454_UpdatePreregistroTable2.cs" />
+    <Compile Include="Migrations\201706161609454_UpdatePreregistroTable2.Designer.cs">
+      <DependentUpon>201706161609454_UpdatePreregistroTable2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706201602166_UpdataDabataseMaskedEdit1.cs" />
+    <Compile Include="Migrations\201706201602166_UpdataDabataseMaskedEdit1.Designer.cs">
+      <DependentUpon>201706201602166_UpdataDabataseMaskedEdit1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706202209100_AddTokenFieldToPreregistro.cs" />
+    <Compile Include="Migrations\201706202209100_AddTokenFieldToPreregistro.Designer.cs">
+      <DependentUpon>201706202209100_AddTokenFieldToPreregistro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706232259115_AddImageNameFieldToTipoContingente.cs" />
+    <Compile Include="Migrations\201706232259115_AddImageNameFieldToTipoContingente.Designer.cs">
+      <DependentUpon>201706232259115_AddImageNameFieldToTipoContingente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706232306236_AddDetalleLicenciaTable.cs" />
+    <Compile Include="Migrations\201706232306236_AddDetalleLicenciaTable.Designer.cs">
+      <DependentUpon>201706232306236_AddDetalleLicenciaTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706271503175_UpdateFechaLiquidacionAduana.cs" />
+    <Compile Include="Migrations\201706271503175_UpdateFechaLiquidacionAduana.Designer.cs">
+      <DependentUpon>201706271503175_UpdateFechaLiquidacionAduana.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707092306254_AddFieldVolumenImportadoToLicencia.cs" />
+    <Compile Include="Migrations\201707092306254_AddFieldVolumenImportadoToLicencia.Designer.cs">
+      <DependentUpon>201707092306254_AddFieldVolumenImportadoToLicencia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707100036524_AddFieldRetiroToSolicitud.cs" />
+    <Compile Include="Migrations\201707100036524_AddFieldRetiroToSolicitud.Designer.cs">
+      <DependentUpon>201707100036524_AddFieldRetiroToSolicitud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707100041211_AddObservacionesRetiroToSolicitud.cs" />
+    <Compile Include="Migrations\201707100041211_AddObservacionesRetiroToSolicitud.Designer.cs">
+      <DependentUpon>201707100041211_AddObservacionesRetiroToSolicitud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707101745084_AddLicenciaRenovadaToLicencia.cs" />
+    <Compile Include="Migrations\201707101745084_AddLicenciaRenovadaToLicencia.Designer.cs">
+      <DependentUpon>201707101745084_AddLicenciaRenovadaToLicencia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ActividadEconomica.cs" />
+    <Compile Include="Models\AnioCategoria.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\Asignacion.cs" />
+    <Compile Include="Models\CambioAsignacion.cs" />
+    <Compile Include="Models\Capitulo.cs" />
+    <Compile Include="Models\Categoria.cs" />
+    <Compile Include="Models\Constant.cs" />
+    <Compile Include="Models\Contingente.cs" />
+    <Compile Include="Models\ContingenteVario.cs" />
+    <Compile Include="Models\Contribuyente.cs" />
+    <Compile Include="Models\CorrelativoAnual.cs" />
+    <Compile Include="Models\DetalleAduana.cs" />
+    <Compile Include="Models\DetalleAsignacion.cs" />
+    <Compile Include="Models\DetalleContingente.cs" />
+    <Compile Include="Models\DetalleContingenteVario.cs" />
+    <Compile Include="Models\DetalleLicencia.cs" />
+    <Compile Include="Models\DetalleSolicitud.cs" />
+    <Compile Include="Models\DocumentoContingente.cs" />
+    <Compile Include="Models\Fraccion.cs" />
+    <Compile Include="Models\FraccionImportar.cs" />
+    <Compile Include="Models\FraccionProducto.cs" />
+    <Compile Include="Models\FraccionTipoContingente.cs" />
+    <Compile Include="Models\FraccionTratado.cs" />
+    <Compile Include="Models\HeaderAduana.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ImportacionExtraordinaria.cs" />
+    <Compile Include="Models\Invitacion.cs" />
+    <Compile Include="Models\Licencia.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Notificacion.cs" />
+    <Compile Include="Models\NotificacionInterna.cs" />
+    <Compile Include="Models\Pais.cs" />
+    <Compile Include="Models\PaisTratado.cs" />
+    <Compile Include="Models\Parametro.cs" />
+    <Compile Include="Models\Parte.cs" />
+    <Compile Include="Models\Partida.cs" />
+    <Compile Include="Models\Preregistro.cs" />
+    <Compile Include="Models\Producto.cs" />
+    <Compile Include="Models\Requisito.cs" />
+    <Compile Include="Models\RequisitoSolicitud.cs" />
+    <Compile Include="Models\Rol.cs" />
+    <Compile Include="Models\RoleName.cs" />
+    <Compile Include="Models\Seccion.cs" />
+    <Compile Include="Models\Solicitud.cs" />
+    <Compile Include="Models\Subpartida.cs" />
+    <Compile Include="Models\TipoContingente.cs" />
+    <Compile Include="Models\TipoNomenclatura.cs" />
+    <Compile Include="Models\Tratado.cs" />
+    <Compile Include="Models\UnidadMedida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AddFraccionTipoContingente.cs" />
+    <Compile Include="ViewModels\AddFraccionViewModel.cs" />
+    <Compile Include="ViewModels\AsignacionIndexViewModel.cs" />
+    <Compile Include="ViewModels\CambiosAsignacionFormViewModel.cs" />
+    <Compile Include="ViewModels\CambiosAsignacionIndexViewModel.cs" />
+    <Compile Include="ViewModels\ChartViewModel.cs" />
+    <Compile Include="ViewModels\CompletarPreregistroFormViewModel.cs" />
+    <Compile Include="ViewModels\ConsultaRequisitosFormViewModel.cs" />
+    <Compile Include="ViewModels\ContingenteFormViewModel.cs" />
+    <Compile Include="ViewModels\ContingenteVarioFormViewModel.cs" />
+    <Compile Include="ViewModels\ContribuyenteDetailViewModel.cs" />
+    <Compile Include="ViewModels\ContribuyenteDisplayChartViewModel.cs" />
+    <Compile Include="ViewModels\CreateContingenteModel.cs" />
+    <Compile Include="ViewModels\CreateTipoContingenteModel.cs" />
+    <Compile Include="ViewModels\DashboardImportadorViewModel.cs" />
+    <Compile Include="ViewModels\DetalleAsignacionIndeViewModel.cs" />
+    <Compile Include="ViewModels\DetalleContingenteVarioFormViewModel.cs" />
+    <Compile Include="ViewModels\DetalleContingenteVarioIndexViewModel.cs" />
+    <Compile Include="ViewModels\DetalleSolicitudDetailsViewModel.cs" />
+    <Compile Include="ViewModels\DetalleSolicitudIndexViewModel.cs" />
+    <Compile Include="ViewModels\DocumentoContingenteVarioIndexViewModel.cs" />
+    <Compile Include="ViewModels\FormSolicitarLicenciaViewModel.cs" />
+    <Compile Include="ViewModels\GenerarContingentesViewModel.cs" />
+    <Compile Include="ViewModels\HeaderAduanaFormViewModel.cs" />
+    <Compile Include="ViewModels\HeaderAduanaIndexViewModel.cs" />
+    <Compile Include="ViewModels\ImportadorFormViewModel.cs" />
+    <Compile Include="ViewModels\ImprimirLicenciaViewModel.cs" />
+    <Compile Include="ViewModels\IndexContingenteModel.cs" />
+    <Compile Include="ViewModels\IndexDetalleContingenteModel.cs" />
+    <Compile Include="ViewModels\IndexFraccionModel.cs" />
+    <Compile Include="ViewModels\IndexFraccionProductoModel.cs" />
+    <Compile Include="ViewModels\IndexFraccionTipoContingenteModel.cs" />
+    <Compile Include="ViewModels\IndexLicenciasViewModel.cs" />
+    <Compile Include="ViewModels\IndexManagerContingenteModel.cs" />
+    <Compile Include="ViewModels\IndexSolicitudes.cs" />
+    <Compile Include="ViewModels\IndexTipoContingenteModel.cs" />
+    <Compile Include="ViewModels\LicenciaFormViewModel.cs" />
+    <Compile Include="ViewModels\LicenciaIndexViewModel.cs" />
+    <Compile Include="ViewModels\LoginContribuyenteViewModel.cs" />
+    <Compile Include="ViewModels\NotificacionFormViewModel.cs" />
+    <Compile Include="ViewModels\NotificacionIndexViewModel.cs" />
+    <Compile Include="ViewModels\PreregistroFormViewModel.cs" />
+    <Compile Include="ViewModels\PrintReceiptViewModel.cs" />
+    <Compile Include="ViewModels\RemoveSolicitudViewModel.cs" />
+    <Compile Include="ViewModels\RenovarLicenciaViewModel.cs" />
+    <Compile Include="ViewModels\RequisitoFormViewModel.cs" />
+    <Compile Include="ViewModels\RequisitoIndexViewModel.cs" />
+    <Compile Include="ViewModels\RequisitoSolicitudIndexViewModel.cs" />
+    <Compile Include="ViewModels\SolicitudConsultaViewModel.cs" />
+    <Compile Include="ViewModels\SolicitudFormViewModel.cs" />
+    <Compile Include="ViewModels\SolicitudNewViewModel.cs" />
+    <Compile Include="ViewModels\SubastaFormViewModel.cs" />
+    <Compile Include="ViewModels\SummaryContingentesViewModel.cs" />
+    <Compile Include="ViewModels\UploadDocumentoViewmodel.cs" />
+    <Compile Include="ViewModels\UploadLicenciaViewmodel.cs" />
+    <Compile Include="ViewModels\UploadNotificacionesFirmadas.cs" />
+    <Compile Include="ViewModels\UploadRequisitoViewmodel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-cerulean.css" />
+    <Content Include="Content\bootstrap-cosmo.css" />
+    <Content Include="Content\bootstrap-cyborg.css" />
+    <Content Include="Content\bootstrap-darkly.css" />
+    <Content Include="Content\bootstrap-flatly.css" />
+    <Content Include="Content\bootstrap-journal.css" />
+    <Content Include="Content\bootstrap-lumen.css" />
+    <Content Include="Content\bootstrap-paper.css" />
+    <Content Include="Content\bootstrap-readable.css" />
+    <Content Include="Content\bootstrap-sandstone.css" />
+    <Content Include="Content\bootstrap-simplex.css" />
+    <Content Include="Content\bootstrap-slate.css" />
+    <Content Include="Content\bootstrap-spacelab.css" />
+    <Content Include="Content\bootstrap-superhero.css" />
+    <Content Include="Content\bootstrap-united.css" />
+    <Content Include="Content\bootstrap-yeti.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
+    <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\autoFill.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.dataTables.css" />
+    <Content Include="Content\DataTables\css\autoFill.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.foundation.css" />
+    <Content Include="Content\DataTables\css\autoFill.foundation.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.jqueryui.css" />
+    <Content Include="Content\DataTables\css\autoFill.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.semanticui.css" />
+    <Content Include="Content\DataTables\css\autoFill.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\buttons.dataTables.css" />
+    <Content Include="Content\DataTables\css\buttons.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\buttons.foundation.css" />
+    <Content Include="Content\DataTables\css\buttons.foundation.min.css" />
+    <Content Include="Content\DataTables\css\buttons.jqueryui.css" />
+    <Content Include="Content\DataTables\css\buttons.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\buttons.semanticui.css" />
+    <Content Include="Content\DataTables\css\buttons.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.bootstrap.css" />
+    <Content Include="Content\DataTables\css\colReorder.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\colReorder.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.dataTables.css" />
+    <Content Include="Content\DataTables\css\colReorder.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.foundation.css" />
+    <Content Include="Content\DataTables\css\colReorder.foundation.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.jqueryui.css" />
+    <Content Include="Content\DataTables\css\colReorder.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.semanticui.css" />
+    <Content Include="Content\DataTables\css\colReorder.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.foundation.css" />
+    <Content Include="Content\DataTables\css\dataTables.foundation.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.jqueryui.css" />
+    <Content Include="Content\DataTables\css\dataTables.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.material.css" />
+    <Content Include="Content\DataTables\css\dataTables.material.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.semanticui.css" />
+    <Content Include="Content\DataTables\css\dataTables.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.uikit.css" />
+    <Content Include="Content\DataTables\css\dataTables.uikit.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.bootstrap.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.dataTables.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.foundation.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.foundation.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.jqueryui.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.semanticui.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.bootstrap.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.dataTables.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.foundation.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.foundation.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.jqueryui.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.semanticui.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Content\DataTables\css\keyTable.bootstrap.css" />
+    <Content Include="Content\DataTables\css\keyTable.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\keyTable.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.dataTables.css" />
+    <Content Include="Content\DataTables\css\keyTable.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.foundation.css" />
+    <Content Include="Content\DataTables\css\keyTable.foundation.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.jqueryui.css" />
+    <Content Include="Content\DataTables\css\keyTable.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.semanticui.css" />
+    <Content Include="Content\DataTables\css\keyTable.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\responsive.bootstrap.css" />
+    <Content Include="Content\DataTables\css\responsive.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\responsive.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\responsive.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\responsive.dataTables.css" />
+    <Content Include="Content\DataTables\css\responsive.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\responsive.foundation.css" />
+    <Content Include="Content\DataTables\css\responsive.foundation.min.css" />
+    <Content Include="Content\DataTables\css\responsive.jqueryui.css" />
+    <Content Include="Content\DataTables\css\responsive.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\responsive.semanticui.css" />
+    <Content Include="Content\DataTables\css\responsive.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.bootstrap.css" />
+    <Content Include="Content\DataTables\css\rowReorder.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\rowReorder.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.dataTables.css" />
+    <Content Include="Content\DataTables\css\rowReorder.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.foundation.css" />
+    <Content Include="Content\DataTables\css\rowReorder.foundation.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.jqueryui.css" />
+    <Content Include="Content\DataTables\css\rowReorder.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.semanticui.css" />
+    <Content Include="Content\DataTables\css\rowReorder.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\scroller.bootstrap.css" />
+    <Content Include="Content\DataTables\css\scroller.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\scroller.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\scroller.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\scroller.dataTables.css" />
+    <Content Include="Content\DataTables\css\scroller.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\scroller.foundation.css" />
+    <Content Include="Content\DataTables\css\scroller.foundation.min.css" />
+    <Content Include="Content\DataTables\css\scroller.jqueryui.css" />
+    <Content Include="Content\DataTables\css\scroller.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\scroller.semanticui.css" />
+    <Content Include="Content\DataTables\css\scroller.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\select.bootstrap.css" />
+    <Content Include="Content\DataTables\css\select.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\select.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\select.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\select.dataTables.css" />
+    <Content Include="Content\DataTables\css\select.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\select.foundation.css" />
+    <Content Include="Content\DataTables\css\select.foundation.min.css" />
+    <Content Include="Content\DataTables\css\select.jqueryui.css" />
+    <Content Include="Content\DataTables\css\select.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\select.semanticui.css" />
+    <Content Include="Content\DataTables\css\select.semanticui.min.css" />
+    <Content Include="Content\DataTables\images\details_close.png" />
+    <Content Include="Content\DataTables\images\details_open.png" />
+    <Content Include="Content\DataTables\images\sort_asc.png" />
+    <Content Include="Content\DataTables\images\sort_asc_disabled.png" />
+    <Content Include="Content\DataTables\images\sort_both.png" />
+    <Content Include="Content\DataTables\images\sort_desc.png" />
+    <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
+    <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\flash-messages.css" />
+    <Content Include="Content\img\arroz.png" />
+    <Content Include="Content\img\error.png" />
+    <Content Include="Content\img\lacteos.png" />
+    <Content Include="Content\img\leche-liquida.png" />
+    <Content Include="Content\img\leche-polvo.PNG" />
+    <Content Include="Content\img\logo_datco.jpg" />
+    <Content Include="Content\img\logo_minec.jpg" />
+    <Content Include="Content\img\logo_minec.png" />
+    <Content Include="Content\img\main-2.jpg" />
+    <Content Include="Content\img\puerco.png" />
+    <Content Include="Content\img\queso.png" />
+    <Content Include="Content\img\res.png" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="Content\typeahead.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bloodhound.js" />
+    <Content Include="Scripts\bloodhound.min.js" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
+    <Content Include="Content\DataTables\css\semanticui.scss" />
+    <Content Include="Content\DataTables\css\mixins.scss" />
+    <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Properties\PublishProfiles\SDAWebUI.pubxml" />
+    <Content Include="Scripts\ckeditor\adapters\jquery.js" />
+    <Content Include="Scripts\ckeditor\CHANGES.html" />
+    <Content Include="Scripts\ckeditor\ckeditor.asp" />
+    <Content Include="Scripts\ckeditor\ckeditor.js" />
+    <Content Include="Scripts\ckeditor\ckeditor_basic.js" />
+    <Content Include="Scripts\ckeditor\ckeditor_basic_source.js" />
+    <Content Include="Scripts\ckeditor\ckeditor_php5.php" />
+    <Content Include="Scripts\ckeditor\ckeditor_php4.php" />
+    <Content Include="Scripts\ckeditor\ckeditor.php" />
+    <Content Include="Scripts\ckeditor\ckeditor.pack" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
+    <Content Include="Scripts\ckeditor\ckeditor_source.js" />
+    <Content Include="Scripts\ckeditor\config.js" />
+    <Content Include="Scripts\ckeditor\contents.css" />
+    <Content Include="Scripts\ckeditor\images\spacer.gif" />
+    <Content Include="Scripts\ckeditor\INSTALL.html" />
+    <Content Include="Scripts\ckeditor\lang\af.js" />
+    <Content Include="Scripts\ckeditor\lang\ar.js" />
+    <Content Include="Scripts\ckeditor\lang\bg.js" />
+    <Content Include="Scripts\ckeditor\lang\bn.js" />
+    <Content Include="Scripts\ckeditor\lang\bs.js" />
+    <Content Include="Scripts\ckeditor\lang\ca.js" />
+    <Content Include="Scripts\ckeditor\lang\cs.js" />
+    <Content Include="Scripts\ckeditor\lang\cy.js" />
+    <Content Include="Scripts\ckeditor\lang\da.js" />
+    <Content Include="Scripts\ckeditor\lang\de.js" />
+    <Content Include="Scripts\ckeditor\lang\el.js" />
+    <Content Include="Scripts\ckeditor\lang\en-au.js" />
+    <Content Include="Scripts\ckeditor\lang\en-ca.js" />
+    <Content Include="Scripts\ckeditor\lang\en-gb.js" />
+    <Content Include="Scripts\ckeditor\lang\en.js" />
+    <Content Include="Scripts\ckeditor\lang\eo.js" />
+    <Content Include="Scripts\ckeditor\lang\es.js" />
+    <Content Include="Scripts\ckeditor\lang\et.js" />
+    <Content Include="Scripts\ckeditor\lang\eu.js" />
+    <Content Include="Scripts\ckeditor\lang\fa.js" />
+    <Content Include="Scripts\ckeditor\lang\fi.js" />
+    <Content Include="Scripts\ckeditor\lang\fo.js" />
+    <Content Include="Scripts\ckeditor\lang\fr-ca.js" />
+    <Content Include="Scripts\ckeditor\lang\fr.js" />
+    <Content Include="Scripts\ckeditor\lang\gl.js" />
+    <Content Include="Scripts\ckeditor\lang\gu.js" />
+    <Content Include="Scripts\ckeditor\lang\he.js" />
+    <Content Include="Scripts\ckeditor\lang\hi.js" />
+    <Content Include="Scripts\ckeditor\lang\hr.js" />
+    <Content Include="Scripts\ckeditor\lang\hu.js" />
+    <Content Include="Scripts\ckeditor\lang\id.js" />
+    <Content Include="Scripts\ckeditor\lang\is.js" />
+    <Content Include="Scripts\ckeditor\lang\it.js" />
+    <Content Include="Scripts\ckeditor\lang\ja.js" />
+    <Content Include="Scripts\ckeditor\lang\ka.js" />
+    <Content Include="Scripts\ckeditor\lang\km.js" />
+    <Content Include="Scripts\ckeditor\lang\ko.js" />
+    <Content Include="Scripts\ckeditor\lang\lt.js" />
+    <Content Include="Scripts\ckeditor\lang\lv.js" />
+    <Content Include="Scripts\ckeditor\lang\mk.js" />
+    <Content Include="Scripts\ckeditor\lang\mn.js" />
+    <Content Include="Scripts\ckeditor\lang\ms.js" />
+    <Content Include="Scripts\ckeditor\lang\nb.js" />
+    <Content Include="Scripts\ckeditor\lang\nl.js" />
+    <Content Include="Scripts\ckeditor\lang\no.js" />
+    <Content Include="Scripts\ckeditor\lang\pl.js" />
+    <Content Include="Scripts\ckeditor\lang\pt-br.js" />
+    <Content Include="Scripts\ckeditor\lang\pt.js" />
+    <Content Include="Scripts\ckeditor\lang\ro.js" />
+    <Content Include="Scripts\ckeditor\lang\ru.js" />
+    <Content Include="Scripts\ckeditor\lang\sk.js" />
+    <Content Include="Scripts\ckeditor\lang\sl.js" />
+    <Content Include="Scripts\ckeditor\lang\sr-latn.js" />
+    <Content Include="Scripts\ckeditor\lang\sr.js" />
+    <Content Include="Scripts\ckeditor\lang\sv.js" />
+    <Content Include="Scripts\ckeditor\lang\th.js" />
+    <Content Include="Scripts\ckeditor\lang\tr.js" />
+    <Content Include="Scripts\ckeditor\lang\ug.js" />
+    <Content Include="Scripts\ckeditor\lang\uk.js" />
+    <Content Include="Scripts\ckeditor\lang\vi.js" />
+    <Content Include="Scripts\ckeditor\lang\zh-cn.js" />
+    <Content Include="Scripts\ckeditor\lang\zh.js" />
+    <Content Include="Scripts\ckeditor\lang\_languages.js" />
+    <Content Include="Scripts\ckeditor\lang\_translationstatus.txt" />
+    <Content Include="Scripts\ckeditor\LICENSE.html" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\a11yhelp.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\cs.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\cy.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\da.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\de.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\el.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\en.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\eo.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\fa.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\fi.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\fr.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\gu.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\he.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\it.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\mk.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\nb.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\nl.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\no.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\pt-br.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\ro.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\tr.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\ug.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\vi.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\zh-cn.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\lang\_translationstatus.txt" />
+    <Content Include="Scripts\ckeditor\plugins\about\dialogs\about.js" />
+    <Content Include="Scripts\ckeditor\plugins\about\dialogs\logo_ckeditor.png" />
+    <Content Include="Scripts\ckeditor\plugins\adobeair\plugin.js" />
+    <Content Include="Scripts\ckeditor\plugins\ajax\plugin.js" />
+    <Content Include="Scripts\ckeditor\plugins\autogrow\plugin.js" />
+    <Content Include="Scripts\ckeditor\plugins\bbcode\plugin.js" />
+    <Content Include="Scripts\ckeditor\plugins\clipboard\dialogs\paste.js" />
+    <Content Include="Scripts\ckeditor\plugins\colordialog\dialogs\colordialog.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\bg.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\cs.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\cy.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\da.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\de.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\el.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\en.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\eo.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\et.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\fa.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\fi.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\fr.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\gu.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\he.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\hr.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\it.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\nb.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\nl.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\no.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\pl.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\pt-br.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\tr.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\ug.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\uk.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\vi.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\zh-cn.js" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\lang\_translationstatus.txt" />
+    <Content Include="Scripts\ckeditor\plugins\devtools\plugin.js" />
+    <Content Include="Scripts\ckeditor\plugins\dialog\dialogDefinition.js" />
+    <Content Include="Scripts\ckeditor\plugins\div\dialogs\div.js" />
+    <Content Include="Scripts\ckeditor\plugins\docprops\dialogs\docprops.js" />
+    <Content Include="Scripts\ckeditor\plugins\docprops\plugin.js" />
+    <Content Include="Scripts\ckeditor\plugins\find\dialogs\find.js" />
+    <Content Include="Scripts\ckeditor\plugins\flash\dialogs\flash.js" />
+    <Content Include="Scripts\ckeditor\plugins\flash\images\placeholder.png" />
+    <Content Include="Scripts\ckeditor\plugins\forms\dialogs\button.js" />
+    <Content Include="Scripts\ckeditor\plugins\forms\dialogs\checkbox.js" />
+    <Content Include="Scripts\ckeditor\plugins\forms\dialogs\form.js" />
+    <Content Include="Scripts\ckeditor\plugins\forms\dialogs\hiddenfield.js" />
+    <Content Include="Scripts\ckeditor\plugins\forms\dialogs\radio.js" />
+    <Content Include="Scripts\ckeditor\plugins\forms\dialogs\select.js" />
+    <Content Include="Scripts\ckeditor\plugins\forms\dialogs\textarea.js" />
+    <Content Include="Scripts\ckeditor\plugins\forms\dialogs\textfield.js" />
+    <Content Include="Scripts\ckeditor\plugins\forms\images\hiddenfield.gif" />
+    <Content Include="Scripts\ckeditor\plugins\iframedialog\plugin.js" />
+    <Content Include="Scripts\ckeditor\plugins\iframe\dialogs\iframe.js" />
+    <Content Include="Scripts\ckeditor\plugins\iframe\images\placeholder.png" />
+    <Content Include="Scripts\ckeditor\plugins\image\dialogs\image.js" />
+    <Content Include="Scripts\ckeditor\plugins\link\dialogs\anchor.js" />
+    <Content Include="Scripts\ckeditor\plugins\link\dialogs\link.js" />
+    <Content Include="Scripts\ckeditor\plugins\link\images\anchor.gif" />
+    <Content Include="Scripts\ckeditor\plugins\liststyle\dialogs\liststyle.js" />
+    <Content Include="Scripts\ckeditor\plugins\pagebreak\images\pagebreak.gif" />
+    <Content Include="Scripts\ckeditor\plugins\pastefromword\filter\default.js" />
+    <Content Include="Scripts\ckeditor\plugins\pastetext\dialogs\pastetext.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\dialogs\placeholder.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\bg.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\cs.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\cy.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\da.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\de.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\el.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\en.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\eo.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\et.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\fa.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\fi.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\fr.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\he.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\hr.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\it.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\nb.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\nl.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\no.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\pl.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\pt-br.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\tr.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\ug.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\uk.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\vi.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\zh-cn.js" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\lang\_translationstatus.txt" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\placeholder.gif" />
+    <Content Include="Scripts\ckeditor\plugins\placeholder\plugin.js" />
+    <Content Include="Scripts\ckeditor\plugins\preview\preview.html" />
+    <Content Include="Scripts\ckeditor\plugins\scayt\dialogs\options.js" />
+    <Content Include="Scripts\ckeditor\plugins\scayt\dialogs\toolbar.css" />
+    <Content Include="Scripts\ckeditor\plugins\showblocks\images\block_address.png" />
+    <Content Include="Scripts\ckeditor\plugins\showblocks\images\block_blockquote.png" />
+    <Content Include="Scripts\ckeditor\plugins\showblocks\images\block_div.png" />
+    <Content Include="Scripts\ckeditor\plugins\showblocks\images\block_h1.png" />
+    <Content Include="Scripts\ckeditor\plugins\showblocks\images\block_h2.png" />
+    <Content Include="Scripts\ckeditor\plugins\showblocks\images\block_h3.png" />
+    <Content Include="Scripts\ckeditor\plugins\showblocks\images\block_h4.png" />
+    <Content Include="Scripts\ckeditor\plugins\showblocks\images\block_h5.png" />
+    <Content Include="Scripts\ckeditor\plugins\showblocks\images\block_h6.png" />
+    <Content Include="Scripts\ckeditor\plugins\showblocks\images\block_p.png" />
+    <Content Include="Scripts\ckeditor\plugins\showblocks\images\block_pre.png" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\dialogs\smiley.js" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\images\angel_smile.gif" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\images\angry_smile.gif" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\images\broken_heart.gif" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\images\confused_smile.gif" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\images\cry_smile.gif" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\images\devil_smile.gif" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\images\embaressed_smile.gif" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\images\envelope.gif" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\images\heart.gif" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\images\kiss.gif" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\images\lightbulb.gif" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\images\omg_smile.gif" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\images\regular_smile.gif" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\images\sad_smile.gif" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\images\shades_smile.gif" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\images\teeth_smile.gif" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\images\thumbs_down.gif" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\images\thumbs_up.gif" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\images\tounge_smile.gif" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\images\whatchutalkingabout_smile.gif" />
+    <Content Include="Scripts\ckeditor\plugins\smiley\images\wink_smile.gif" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\specialchar.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\lang\cs.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\lang\cy.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\lang\de.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\lang\el.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\lang\en.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\lang\eo.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\lang\et.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\lang\fa.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\lang\fi.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\lang\fr.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\lang\he.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\lang\hr.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\lang\it.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\lang\nb.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\lang\nl.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\lang\no.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\lang\pt-br.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\lang\tr.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\lang\ug.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\lang\zh-cn.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\lang\_translationstatus.txt" />
+    <Content Include="Scripts\ckeditor\plugins\stylesheetparser\plugin.js" />
+    <Content Include="Scripts\ckeditor\plugins\styles\styles\default.js" />
+    <Content Include="Scripts\ckeditor\plugins\tableresize\plugin.js" />
+    <Content Include="Scripts\ckeditor\plugins\tabletools\dialogs\tableCell.js" />
+    <Content Include="Scripts\ckeditor\plugins\table\dialogs\table.js" />
+    <Content Include="Scripts\ckeditor\plugins\templates\dialogs\templates.js" />
+    <Content Include="Scripts\ckeditor\plugins\templates\templates\default.js" />
+    <Content Include="Scripts\ckeditor\plugins\templates\templates\images\template1.gif" />
+    <Content Include="Scripts\ckeditor\plugins\templates\templates\images\template2.gif" />
+    <Content Include="Scripts\ckeditor\plugins\templates\templates\images\template3.gif" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\dialogs\uicolor.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\bg.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\cs.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\cy.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\da.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\de.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\el.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\en.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\eo.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\et.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\fa.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\fi.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\fr.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\he.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\hr.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\it.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\mk.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\nb.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\nl.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\no.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\pl.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\pt-br.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\tr.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\ug.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\uk.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\vi.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\zh-cn.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\lang\_translationstatus.txt" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\plugin.js" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\uicolor.gif" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\yui\assets\hue_bg.png" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\yui\assets\hue_thumb.png" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\yui\assets\picker_mask.png" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\yui\assets\picker_thumb.png" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\yui\assets\yui.css" />
+    <Content Include="Scripts\ckeditor\plugins\uicolor\yui\yui.js" />
+    <Content Include="Scripts\ckeditor\plugins\wsc\dialogs\ciframe.html" />
+    <Content Include="Scripts\ckeditor\plugins\wsc\dialogs\tmpFrameset.html" />
+    <Content Include="Scripts\ckeditor\plugins\wsc\dialogs\wsc.css" />
+    <Content Include="Scripts\ckeditor\plugins\wsc\dialogs\wsc.js" />
+    <Content Include="Scripts\ckeditor\plugins\xml\plugin.js" />
+    <Content Include="Scripts\ckeditor\skins\kama\dialog.css" />
+    <Content Include="Scripts\ckeditor\skins\kama\editor.css" />
+    <Content Include="Scripts\ckeditor\skins\kama\icons.png" />
+    <Content Include="Scripts\ckeditor\skins\kama\icons_rtl.png" />
+    <Content Include="Scripts\ckeditor\skins\kama\images\dialog_sides.gif" />
+    <Content Include="Scripts\ckeditor\skins\kama\images\dialog_sides.png" />
+    <Content Include="Scripts\ckeditor\skins\kama\images\dialog_sides_rtl.png" />
+    <Content Include="Scripts\ckeditor\skins\kama\images\mini.gif" />
+    <Content Include="Scripts\ckeditor\skins\kama\images\noimage.png" />
+    <Content Include="Scripts\ckeditor\skins\kama\images\sprites.png" />
+    <Content Include="Scripts\ckeditor\skins\kama\images\sprites_ie6.png" />
+    <Content Include="Scripts\ckeditor\skins\kama\images\toolbar_start.gif" />
+    <Content Include="Scripts\ckeditor\skins\kama\skin.js" />
+    <Content Include="Scripts\ckeditor\skins\kama\templates.css" />
+    <Content Include="Scripts\ckeditor\skins\office2003\dialog.css" />
+    <Content Include="Scripts\ckeditor\skins\office2003\editor.css" />
+    <Content Include="Scripts\ckeditor\skins\office2003\icons.png" />
+    <Content Include="Scripts\ckeditor\skins\office2003\icons_rtl.png" />
+    <Content Include="Scripts\ckeditor\skins\office2003\images\dialog_sides.gif" />
+    <Content Include="Scripts\ckeditor\skins\office2003\images\dialog_sides.png" />
+    <Content Include="Scripts\ckeditor\skins\office2003\images\dialog_sides_rtl.png" />
+    <Content Include="Scripts\ckeditor\skins\office2003\images\mini.gif" />
+    <Content Include="Scripts\ckeditor\skins\office2003\images\noimage.png" />
+    <Content Include="Scripts\ckeditor\skins\office2003\images\sprites.png" />
+    <Content Include="Scripts\ckeditor\skins\office2003\images\sprites_ie6.png" />
+    <Content Include="Scripts\ckeditor\skins\office2003\skin.js" />
+    <Content Include="Scripts\ckeditor\skins\office2003\templates.css" />
+    <Content Include="Scripts\ckeditor\skins\v2\dialog.css" />
+    <Content Include="Scripts\ckeditor\skins\v2\editor.css" />
+    <Content Include="Scripts\ckeditor\skins\v2\icons.png" />
+    <Content Include="Scripts\ckeditor\skins\v2\icons_rtl.png" />
+    <Content Include="Scripts\ckeditor\skins\v2\images\dialog_sides.gif" />
+    <Content Include="Scripts\ckeditor\skins\v2\images\dialog_sides.png" />
+    <Content Include="Scripts\ckeditor\skins\v2\images\dialog_sides_rtl.png" />
+    <Content Include="Scripts\ckeditor\skins\v2\images\mini.gif" />
+    <Content Include="Scripts\ckeditor\skins\v2\images\noimage.png" />
+    <Content Include="Scripts\ckeditor\skins\v2\images\sprites.png" />
+    <Content Include="Scripts\ckeditor\skins\v2\images\sprites_ie6.png" />
+    <Content Include="Scripts\ckeditor\skins\v2\images\toolbar_start.gif" />
+    <Content Include="Scripts\ckeditor\skins\v2\skin.js" />
+    <Content Include="Scripts\ckeditor\skins\v2\templates.css" />
+    <Content Include="Scripts\ckeditor\themes\default\theme.js" />
+    <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
+    <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\autoFill.bootstrap4.js" />
+    <Content Include="Scripts\DataTables\autoFill.bootstrap4.min.js" />
+    <Content Include="Scripts\DataTables\autoFill.foundation.js" />
+    <Content Include="Scripts\DataTables\autoFill.foundation.min.js" />
+    <Content Include="Scripts\DataTables\autoFill.jqueryui.js" />
+    <Content Include="Scripts\DataTables\autoFill.jqueryui.min.js" />
+    <Content Include="Scripts\DataTables\autoFill.semanticui.js" />
+    <Content Include="Scripts\DataTables\autoFill.semanticui.min.js" />
+    <Content Include="Scripts\DataTables\buttons.bootstrap.js" />
+    <Content Include="Scripts\DataTables\buttons.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\buttons.bootstrap4.js" />
+    <Content Include="Scripts\DataTables\buttons.bootstrap4.min.js" />
+    <Content Include="Scripts\DataTables\buttons.colVis.js" />
+    <Content Include="Scripts\DataTables\buttons.colVis.min.js" />
+    <Content Include="Scripts\DataTables\buttons.flash.js" />
+    <Content Include="Scripts\DataTables\buttons.flash.min.js" />
+    <Content Include="Scripts\DataTables\buttons.foundation.js" />
+    <Content Include="Scripts\DataTables\buttons.foundation.min.js" />
+    <Content Include="Scripts\DataTables\buttons.html5.js" />
+    <Content Include="Scripts\DataTables\buttons.html5.min.js" />
+    <Content Include="Scripts\DataTables\buttons.jqueryui.js" />
+    <Content Include="Scripts\DataTables\buttons.jqueryui.min.js" />
+    <Content Include="Scripts\DataTables\buttons.print.js" />
+    <Content Include="Scripts\DataTables\buttons.print.min.js" />
+    <Content Include="Scripts\DataTables\buttons.semanticui.js" />
+    <Content Include="Scripts\DataTables\buttons.semanticui.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.autoFill.js" />
+    <Content Include="Scripts\DataTables\dataTables.autoFill.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap4.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap4.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.buttons.js" />
+    <Content Include="Scripts\DataTables\dataTables.buttons.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.colReorder.js" />
+    <Content Include="Scripts\DataTables\dataTables.colReorder.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedColumns.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedColumns.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedHeader.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedHeader.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.foundation.js" />
+    <Content Include="Scripts\DataTables\dataTables.foundation.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.jqueryui.js" />
+    <Content Include="Scripts\DataTables\dataTables.jqueryui.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.keyTable.js" />
+    <Content Include="Scripts\DataTables\dataTables.keyTable.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.material.js" />
+    <Content Include="Scripts\DataTables\dataTables.material.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.responsive.js" />
+    <Content Include="Scripts\DataTables\dataTables.responsive.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.rowReorder.js" />
+    <Content Include="Scripts\DataTables\dataTables.rowReorder.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.scroller.js" />
+    <Content Include="Scripts\DataTables\dataTables.scroller.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.select.js" />
+    <Content Include="Scripts\DataTables\dataTables.select.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.semanticui.js" />
+    <Content Include="Scripts\DataTables\dataTables.semanticui.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.uikit.js" />
+    <Content Include="Scripts\DataTables\dataTables.uikit.min.js" />
+    <Content Include="Scripts\DataTables\jquery.dataTables.js" />
+    <Content Include="Scripts\DataTables\jquery.dataTables.min.js" />
+    <Content Include="Scripts\DataTables\responsive.bootstrap.js" />
+    <Content Include="Scripts\DataTables\responsive.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\responsive.bootstrap4.js" />
+    <Content Include="Scripts\DataTables\responsive.bootstrap4.min.js" />
+    <Content Include="Scripts\DataTables\responsive.foundation.js" />
+    <Content Include="Scripts\DataTables\responsive.foundation.min.js" />
+    <Content Include="Scripts\DataTables\responsive.jqueryui.js" />
+    <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
+    <Content Include="Scripts\DataTables\responsive.semanticui.js" />
+    <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.maskedinput.js" />
+    <Content Include="Scripts\jquery.maskedinput.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -199,7 +1332,15 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\typeahead.bundle.js" />
+    <Content Include="Scripts\typeahead.bundle.min.js" />
+    <Content Include="Scripts\typeahead.jquery.js" />
+    <Content Include="Scripts\typeahead.jquery.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Shared\404.html" />
+    <Content Include="Views\Shared\505.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -220,7 +1361,7 @@
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Login_old.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
@@ -234,9 +1375,133 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_NavBar.cshtml" />
+    <Content Include="Views\AnioCategoria\Details.cshtml" />
+    <Content Include="Views\AnioCategoria\Edit.cshtml" />
+    <Content Include="Views\AnioCategoria\Index.cshtml" />
+    <Content Include="Views\Capitulo\Index.cshtml" />
+    <Content Include="Views\Categoria\AddFraccion.cshtml" />
+    <Content Include="Views\Categoria\Details.cshtml" />
+    <Content Include="Views\Categoria\Edit.cshtml" />
+    <Content Include="Views\Categoria\GenerarCortes.cshtml" />
+    <Content Include="Views\Categoria\IndexFracciones.cshtml" />
+    <Content Include="Views\Contingente\Create.cshtml" />
+    <Content Include="Views\Contingente\Details.cshtml" />
+    <Content Include="Views\Contingente\Index.cshtml" />
+    <Content Include="Views\Contingente\Manager.cshtml" />
+    <Content Include="Views\Contingente\ResumeChart.cshtml" />
+    <Content Include="Views\Contingente\SummaryContingentes.cshtml" />
+    <Content Include="Views\Contribuyente\Create.cshtml" />
+    <Content Include="Views\Contribuyente\CreateUsuario.cshtml" />
+    <Content Include="Views\Contribuyente\Dashboard.cshtml" />
+    <Content Include="Views\Contribuyente\Delete.cshtml" />
+    <Content Include="Views\Contribuyente\Desktop.cshtml" />
+    <Content Include="Views\Contribuyente\Details.cshtml" />
+    <Content Include="Views\Contribuyente\Edit.cshtml" />
+    <Content Include="Views\Contribuyente\Index.cshtml" />
+    <Content Include="Views\Contribuyente\IndexSolicitudes.cshtml" />
+    <Content Include="Views\DetalleAduana\Index.cshtml" />
+    <Content Include="Views\DetalleContingente\Details.cshtml" />
+    <Content Include="Views\DetalleContingente\Edit.cshtml" />
+    <Content Include="Views\DetalleContingente\Index.cshtml" />
+    <Content Include="Views\Fraccion\Create.cshtml" />
+    <Content Include="Views\Fraccion\Details.cshtml" />
+    <Content Include="Views\Fraccion\Index.cshtml" />
+    <Content Include="Views\FraccionProducto\Index.cshtml" />
+    <Content Include="Views\FraccionTipoContingente\AddFraccion.cshtml" />
+    <Content Include="Views\FraccionTipoContingente\Index.cshtml" />
+    <Content Include="Views\FraccionTratado\Details.cshtml" />
+    <Content Include="Views\FraccionTratado\Edit.cshtml" />
+    <Content Include="Views\HeaderAduana\Index.cshtml" />
+    <Content Include="Views\Licencia\Create.cshtml" />
+    <Content Include="Views\Licencia\CreateReasignacion.cshtml" />
+    <Content Include="Views\Licencia\Index.cshtml" />
+    <Content Include="Views\Licencia\IndexImportador.cshtml" />
+    <Content Include="Views\Licencia\IndexReasignacion.cshtml" />
+    <Content Include="Views\Licencia\Solicitar.cshtml" />
+    <Content Include="Views\Pais\Create.cshtml" />
+    <Content Include="Views\Pais\Index.cshtml" />
+    <Content Include="Views\Partida\Index.cshtml" />
+    <Content Include="Views\Producto\Index.cshtml" />
+    <Content Include="Views\Seccion\Details.cshtml" />
+    <Content Include="Views\Seccion\Edit.cshtml" />
+    <Content Include="Views\Seccion\Index.cshtml" />
+    <Content Include="Views\Solicitud\Create.cshtml" />
+    <Content Include="Views\Solicitud\CreateAdmin.cshtml" />
+    <Content Include="Views\Solicitud\Edit.cshtml" />
+    <Content Include="Views\Solicitud\Index.cshtml" />
+    <Content Include="Views\Solicitud\IndexReasignacion.cshtml" />
+    <Content Include="Views\Solicitud\Reasignar.cshtml" />
+    <Content Include="Views\Solicitud\RetirarReasignacion.cshtml" />
+    <Content Include="Views\TipoContingente\Create.cshtml" />
+    <Content Include="Views\TipoContingente\Edit.cshtml" />
+    <Content Include="Views\TipoContingente\Index.cshtml" />
+    <Content Include="Views\TipoNomenclatura\Index.cshtml" />
+    <Content Include="Views\Tratado\Create.cshtml" />
+    <Content Include="Views\Tratado\CreateCategory.cshtml" />
+    <Content Include="Views\Tratado\Details.cshtml" />
+    <Content Include="Views\Tratado\Edit.cshtml" />
+    <Content Include="Views\Tratado\GenerarContingentes.cshtml" />
+    <Content Include="Views\Tratado\Index.cshtml" />
+    <Content Include="Views\Tratado\IndexCategories.cshtml" />
+    <Content Include="Views\Tratado\IndexFracciones.cshtml" />
+    <Content Include="Views\UnidadMedida\Create.cshtml" />
+    <Content Include="Views\UnidadMedida\Details.cshtml" />
+    <Content Include="Views\UnidadMedida\Edit.cshtml" />
+    <Content Include="Views\UnidadMedida\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Preregistro\New.cshtml" />
+    <Content Include="Views\Preregistro\Index.cshtml" />
+    <Content Include="Views\Preregistro\Completar.cshtml" />
+    <Content Include="Views\Solicitud\SolicitudForm.cshtml" />
+    <Content Include="Views\RequisitoSolicitud\Index.cshtml" />
+    <Content Include="Views\RequisitoSolicitud\Upload.cshtml" />
+    <Content Include="Views\Solicitud\Consultar.cshtml" />
+    <Content Include="Views\Requisito\Index.cshtml" />
+    <Content Include="Views\Requisito\New.cshtml" />
+    <Content Include="Views\NotificacionInterna\Index.cshtml" />
+    <Content Include="Views\NotificacionInterna\New.cshtml" />
+    <Content Include="Views\DetalleAsignaciones\Index.cshtml" />
+    <Content Include="Views\Asignaciones\Index.cshtml" />
+    <Content Include="Views\CambiosAsignacion\Index.cshtml" />
+    <Content Include="Views\CambiosAsignacion\CambioAsignacionForm.cshtml" />
+    <Content Include="Views\Notificacion\Index.cshtml" />
+    <Content Include="Views\DetalleSolicitud\Details.cshtml" />
+    <Content Include="Views\DetalleSolicitud\ConsultaPorFraccion.cshtml" />
+    <Content Include="Views\ContingenteVario\Index.cshtml" />
+    <Content Include="Views\ContingenteVario\FormContingenteVario.cshtml" />
+    <Content Include="Views\HeaderAduana\FormHeaderAduana.cshtml" />
+    <Content Include="Views\DetalleContingenteVario\Index.cshtml" />
+    <Content Include="Views\DetalleContingenteVario\FormDetalleContingenteVario.cshtml" />
+    <Content Include="Views\Contingente\FormContingente.cshtml" />
+    <Content Include="Views\Solicitud\IndexVarios.cshtml" />
+    <Content Include="Views\Contribuyente\DisplayChart.cshtml" />
+    <Content Include="Views\Licencia\IndexOtrosContingentes.cshtml" />
+    <Content Include="Views\DocumentoContingente\Index.cshtml" />
+    <Content Include="Views\DocumentoContingente\UploadDocumentoContingenteVario.cshtml" />
+    <Content Include="Views\Licencia\ImrprimirLicencia.cshtml" />
+    <Content Include="Views\Solicitud\FormSolicitudSubasta.cshtml" />
+    <Content Include="Views\Solicitud\IndexCertificados.cshtml" />
+    <Content Include="Views\ContingenteVario\Details.cshtml" />
+    <Content Include="Views\Licencia\FormLicencia.cshtml" />
+    <Content Include="Views\Contingente\EditTemplate.cshtml" />
+    <Content Include="Views\Parametros\Index.cshtml" />
+    <Content Include="Views\Parametros\Create.cshtml" />
+    <Content Include="Views\Parametros\Edit.cshtml" />
+    <Content Include="Views\ContingenteVario\EditTemplate.cshtml" />
+    <Content Include="Views\DetalleContingente\UploadNotificacionesFirmadas.cshtml" />
+    <Content Include="Views\DetalleContingente\SendEmailNotificaciones.cshtml" />
+    <Content Include="Views\Licencia\UploadSigned.cshtml" />
+    <Content Include="Views\Licencia\PrintReceipt.cshtml" />
+    <Content Include="Views\Requisito\ConsultaRequisitos.cshtml" />
+    <Content Include="Views\Contribuyente\Dashboard_img.cshtml" />
+    <Content Include="Views\Solicitud\ConsultaImportador.cshtml" />
+    <Content Include="Views\Solicitud\New.cshtml" />
+    <Content Include="Views\Solicitud\Remove.cshtml" />
+    <Content Include="Views\Licencia\Renovar.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\notificaciones\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -245,6 +1510,236 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201701101925281_Initial.resx">
+      <DependentUpon>201701101925281_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701102357197_AddUpdateContingenteTable.resx">
+      <DependentUpon>201701102357197_AddUpdateContingenteTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701111809510_AddActividadEconomicaTable.resx">
+      <DependentUpon>201701111809510_AddActividadEconomicaTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701112133177_AddPreregistroTable.resx">
+      <DependentUpon>201701112133177_AddPreregistroTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701112156579_AddFieldPreregistroTable.resx">
+      <DependentUpon>201701112156579_AddFieldPreregistroTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701120028228_AddFieldsPreregistroTable2.resx">
+      <DependentUpon>201701120028228_AddFieldsPreregistroTable2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701121856270_AddNotificacionesTable.resx">
+      <DependentUpon>201701121856270_AddNotificacionesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701121950486_AddTipoPersonaFieldToPreregistro.resx">
+      <DependentUpon>201701121950486_AddTipoPersonaFieldToPreregistro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701122011072_AddFieldsToPreregistroTable.resx">
+      <DependentUpon>201701122011072_AddFieldsToPreregistroTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701122202238_UpdateTipoContingenteTable.resx">
+      <DependentUpon>201701122202238_UpdateTipoContingenteTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701122358256_AddRequisitosTable.resx">
+      <DependentUpon>201701122358256_AddRequisitosTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701130010531_AddRequisitoSolicitudTable.resx">
+      <DependentUpon>201701130010531_AddRequisitoSolicitudTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701130207248_UpdateFechaEnvioSolicitudToNull.resx">
+      <DependentUpon>201701130207248_UpdateFechaEnvioSolicitudToNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701230241325_AddAsignacionTables.resx">
+      <DependentUpon>201701230241325_AddAsignacionTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701230628509_UpdateDetAsignacionTable.resx">
+      <DependentUpon>201701230628509_UpdateDetAsignacionTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701230632141_UpdateDetAsignacionTable2.resx">
+      <DependentUpon>201701230632141_UpdateDetAsignacionTable2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701241747597_AddEspecificarFraccionFieldToTipoContingente.resx">
+      <DependentUpon>201701241747597_AddEspecificarFraccionFieldToTipoContingente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703022248255_AddCambiosAsignacionTable.resx">
+      <DependentUpon>201703022248255_AddCambiosAsignacionTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703030627410_UpdateCambioAsignacionTable.resx">
+      <DependentUpon>201703030627410_UpdateCambioAsignacionTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703030904531_AddNotificacionesTable1.resx">
+      <DependentUpon>201703030904531_AddNotificacionesTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703030945004_AddVistoFieldToNotificacion.resx">
+      <DependentUpon>201703030945004_AddVistoFieldToNotificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703091709532_AddDetalleSolicitudTable.resx">
+      <DependentUpon>201703091709532_AddDetalleSolicitudTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703100552268_AddPercentFieldToDetalleSolic.resx">
+      <DependentUpon>201703100552268_AddPercentFieldToDetalleSolic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703100606062_AddPercentToDetalleAsignacion.resx">
+      <DependentUpon>201703100606062_AddPercentToDetalleAsignacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703100945025_UpdateMontoNuevoDetalleContingente.resx">
+      <DependentUpon>201703100945025_UpdateMontoNuevoDetalleContingente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703141743237_AddFieldsToTipoContingente.resx">
+      <DependentUpon>201703141743237_AddFieldsToTipoContingente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703150041253_AddPercentFieldToTipoContingente.resx">
+      <DependentUpon>201703150041253_AddPercentFieldToTipoContingente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703151513165_AddTableContingentesVarios.resx">
+      <DependentUpon>201703151513165_AddTableContingentesVarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703151515535_AddFieldTotalRecepcionToContingenteVario.resx">
+      <DependentUpon>201703151515535_AddFieldTotalRecepcionToContingenteVario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703151519420_AddTableDetalleContingenteVario.resx">
+      <DependentUpon>201703151519420_AddTableDetalleContingenteVario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703201356205_AddFieldsToAduanaHeader.resx">
+      <DependentUpon>201703201356205_AddFieldsToAduanaHeader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703201358119_AddFieldsToAduanaHeader2.resx">
+      <DependentUpon>201703201358119_AddFieldsToAduanaHeader2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703201510585_AddComentariosFieldToHeaderAduana.resx">
+      <DependentUpon>201703201510585_AddComentariosFieldToHeaderAduana.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703201656333_UpdateHeaderAduanaTable.resx">
+      <DependentUpon>201703201656333_UpdateHeaderAduanaTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703212325178_AddFieldSolicitudesGeneradas.resx">
+      <DependentUpon>201703212325178_AddFieldSolicitudesGeneradas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703212337428_AddFieldsToSolicitud.resx">
+      <DependentUpon>201703212337428_AddFieldsToSolicitud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703291721506_AddCalcularPorcentajeFieldToContingenteVario.resx">
+      <DependentUpon>201703291721506_AddCalcularPorcentajeFieldToContingenteVario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703291754502_AddNewFieldsToContingenteVario.resx">
+      <DependentUpon>201703291754502_AddNewFieldsToContingenteVario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703291950398_AddTemplateLicenciaFieldToContingenteVario.resx">
+      <DependentUpon>201703291950398_AddTemplateLicenciaFieldToContingenteVario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703292349203_AddTableDocumentoContingente.resx">
+      <DependentUpon>201703292349203_AddTableDocumentoContingente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703300022026_updateTableDocumentoContingente.resx">
+      <DependentUpon>201703300022026_updateTableDocumentoContingente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704041705010_AddFechaImpresionToLicencia.resx">
+      <DependentUpon>201704041705010_AddFechaImpresionToLicencia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704042248326_AddMesesVencimientoToTipoContingente.resx">
+      <DependentUpon>201704042248326_AddMesesVencimientoToTipoContingente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704042313457_AddCertificadoToSolicitudes.resx">
+      <DependentUpon>201704042313457_AddCertificadoToSolicitudes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704052258048_AddParametrosTable.resx">
+      <DependentUpon>201704052258048_AddParametrosTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705051722337_AddNombreNotificacionFieldToContribuyente.resx">
+      <DependentUpon>201705051722337_AddNombreNotificacionFieldToContribuyente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705051728364_AddNotificacionFieldsToDetalleContingente.resx">
+      <DependentUpon>201705051728364_AddNotificacionFieldsToDetalleContingente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705051801395_addTemplateNotificacionFieldToContingente.resx">
+      <DependentUpon>201705051801395_addTemplateNotificacionFieldToContingente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705081950041_AddNotificacionFileToSolicitud.resx">
+      <DependentUpon>201705081950041_AddNotificacionFileToSolicitud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705092223151_AddNotificacionPathToSolicitud.resx">
+      <DependentUpon>201705092223151_AddNotificacionPathToSolicitud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705152001149_AddRepresentanteLegalFieldsToImportador.resx">
+      <DependentUpon>201705152001149_AddRepresentanteLegalFieldsToImportador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705152012510_AddFieldsRepresentanteToImportador.resx">
+      <DependentUpon>201705152012510_AddFieldsRepresentanteToImportador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705152027029_AddFieldsRepresentanteToImportador2.resx">
+      <DependentUpon>201705152027029_AddFieldsRepresentanteToImportador2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705152045079_UpdateNullableActividadEconomicaPreregistro.resx">
+      <DependentUpon>201705152045079_UpdateNullableActividadEconomicaPreregistro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705152047334_UpdateNullableActividadEconomicaPreregistro2.resx">
+      <DependentUpon>201705152047334_UpdateNullableActividadEconomicaPreregistro2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705152049494_UpdateNullableActividadEconomicaPreregistro3.resx">
+      <DependentUpon>201705152049494_UpdateNullableActividadEconomicaPreregistro3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705301622457_AddAbreviaturaFieldToUnidadMedida.resx">
+      <DependentUpon>201705301622457_AddAbreviaturaFieldToUnidadMedida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706131650109_AddSignedLicenseToLicense.resx">
+      <DependentUpon>201706131650109_AddSignedLicenseToLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706131700477_AddUploadedLicenseStatusToLicense.resx">
+      <DependentUpon>201706131700477_AddUploadedLicenseStatusToLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706131703093_AddUploadedLicenseDateToLicense.resx">
+      <DependentUpon>201706131703093_AddUploadedLicenseDateToLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706131707016_AddUploadedLicenseNullDateToLicense.resx">
+      <DependentUpon>201706131707016_AddUploadedLicenseNullDateToLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706132255527_AddTemplateActaFieldToTipoContingente.resx">
+      <DependentUpon>201706132255527_AddTemplateActaFieldToTipoContingente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706132345074_AddFechaAcuerdoToLicencia.resx">
+      <DependentUpon>201706132345074_AddFechaAcuerdoToLicencia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706161608486_UpdatePreregistroTable.resx">
+      <DependentUpon>201706161608486_UpdatePreregistroTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706161609454_UpdatePreregistroTable2.resx">
+      <DependentUpon>201706161609454_UpdatePreregistroTable2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706201602166_UpdataDabataseMaskedEdit1.resx">
+      <DependentUpon>201706201602166_UpdataDabataseMaskedEdit1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706202209100_AddTokenFieldToPreregistro.resx">
+      <DependentUpon>201706202209100_AddTokenFieldToPreregistro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706232259115_AddImageNameFieldToTipoContingente.resx">
+      <DependentUpon>201706232259115_AddImageNameFieldToTipoContingente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706232306236_AddDetalleLicenciaTable.resx">
+      <DependentUpon>201706232306236_AddDetalleLicenciaTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706271503175_UpdateFechaLiquidacionAduana.resx">
+      <DependentUpon>201706271503175_UpdateFechaLiquidacionAduana.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707092306254_AddFieldVolumenImportadoToLicencia.resx">
+      <DependentUpon>201707092306254_AddFieldVolumenImportadoToLicencia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707100036524_AddFieldRetiroToSolicitud.resx">
+      <DependentUpon>201707100036524_AddFieldRetiroToSolicitud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707100041211_AddObservacionesRetiroToSolicitud.resx">
+      <DependentUpon>201707100041211_AddObservacionesRetiroToSolicitud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707101745084_AddLicenciaRenovadaToLicencia.resx">
+      <DependentUpon>201707101745084_AddLicenciaRenovadaToLicencia.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Users\jbarr\Documents\Visual Studio 2015\Projects\SDA\SDA.Services\SDA.Services.csproj">
+      <Project>{FB6BB65F-AC39-46FD-A840-9DEA61EA17C2}</Project>
+      <Name>SDA.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
