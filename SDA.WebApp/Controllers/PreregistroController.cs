@@ -60,7 +60,7 @@ namespace SDA.WebApp.Controllers
                 };
 
                 this.Flash("error",
-                "Lo sentimos, ya existe registro o importador registrado con el mismo NIT.");
+                "<h4>Lo sentimos, ya existe registro o importador registrado con el mismo NIT.</h4>");
                 return View("New", vm);
 
             }
@@ -113,7 +113,7 @@ namespace SDA.WebApp.Controllers
             
             this.Flash("info", 
                 "Se ha enviado su solicitud, en 24 horas recibira " +
-                "información con respecto al tramite de su solicitud. Muchas gracias!");
+                "información con respecto al tramite de su solicitud.");
             return RedirectToAction("Index", "Home");
         }
 
