@@ -847,19 +847,19 @@ namespace SDA.WebApp.Controllers
         //[HttpPost]
         public ActionResult CalcularAsignacion()
         {
-            SDA.Services.ContingenteServices.Asignar(DateTime.Now.Year);
-            this.Flash("info","Proceso de Asignación finalizado. ");
+            //SDA.Services.ContingenteServices.Asignar(DateTime.Now.Year);
+            //this.Flash("info","Proceso de Asignación finalizado. ");
             return RedirectToAction("SummaryContingentes", "Contingente",
                 new { year = DateTime.Now.Year });
         }
 
         public ActionResult CalcularReasignacion()
         {
-            SDA.Services.ContingenteServices.Reasignar(DateTime.Now.Year);
-            this.Flash("info", "Proceso de reasignación finalizado. Número de solicitudes afectadas " +
-                SDA.Services.ContingenteServices.CountSolicitudesReasignacion().ToString() +
-                " y el total del volumen reasignado es de " +
-                SDA.Services.ContingenteServices.SumSolicitudesReasignacion().ToString("###,###,##0.00"));
+            //SDA.Services.ContingenteServices.Reasignar(DateTime.Now.Year);
+            //this.Flash("info", "Proceso de reasignación finalizado. Número de solicitudes afectadas " +
+            //    SDA.Services.ContingenteServices.CountSolicitudesReasignacion().ToString() +
+            //    " y el total del volumen reasignado es de " +
+            //    SDA.Services.ContingenteServices.SumSolicitudesReasignacion().ToString("###,###,##0.00"));
             return RedirectToAction("SummaryContingentes", "Contingente", new { year = DateTime.Now.Year });
         }
 
